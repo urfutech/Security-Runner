@@ -1,0 +1,31 @@
+using UnityEngine;
+
+public class SpawnEnemy : MonoBehaviour
+{
+    public int EnemyCount { get; private set; }
+
+    [SerializeField] LineManager _lineManager;
+    [SerializeField] GameObject _prefabEnemy;
+    [SerializeField] GameObject _player;
+    [SerializeField] int _maxEnemy;
+    [SerializeField] float _spawnTime;
+
+    float _timer;
+
+    private void Update()
+    {
+        _timer += Time.deltaTime;
+
+        if (_timer > _spawnTime && EnemyCount < _maxEnemy)
+        {
+            var lineId = Random.Range(0, _lineManager.Lines.Count);
+
+            Instantiate(_prefabEnemy)
+                .GetComponent<Enemy>()
+                .Initialize(_lineManager, lineId, _player.transform);
+
+            EnemyCount++;
+            _timer = 0f;
+        }
+    }
+}

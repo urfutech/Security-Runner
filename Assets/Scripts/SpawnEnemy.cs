@@ -19,10 +19,12 @@ public class SpawnEnemy : MonoBehaviour
         if (_timer > _spawnTime && EnemyCount < _maxEnemy)
         {
             var lineId = Random.Range(0, _lineManager.Lines.Count);
+            if (lineId == _player.GetComponent<PlayerMove>().CurrentLineId)
+                lineId = (lineId + 1) % _lineManager.Lines.Count;
 
             Instantiate(_prefabEnemy)
                 .GetComponent<Enemy>()
-                .Initialize(_lineManager, lineId, _player.transform);
+                .Initialize(_lineManager, lineId, _player);
 
             EnemyCount++;
             _timer = 0f;

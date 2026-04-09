@@ -5,6 +5,7 @@ public class PlayerMove : MonoBehaviour
     public int CurrentLineId { get; private set; }
 
     [SerializeField] float _speedForward;
+    [SerializeField] float _speedForwardChange;
     [SerializeField] float _speedChangeLine;
     [SerializeField] LineManager _lineManager;
     [SerializeField] GameObject _road1;
@@ -35,6 +36,7 @@ public class PlayerMove : MonoBehaviour
 
     void Movement()
     {
+        _speedForward += _speedForwardChange;
         transform.position += _speedForward * Time.deltaTime * transform.forward;
 
         if (Input.GetKeyDown(KeyCode.D) && CurrentLineId > 0)
@@ -57,4 +59,6 @@ public class PlayerMove : MonoBehaviour
                 _isChangeLine = true;
         }
     }
+
+    public float GetSpeed() => _speedForward;
 }

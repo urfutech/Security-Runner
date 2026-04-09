@@ -9,6 +9,8 @@ public class SpawnEnemy : MonoBehaviour
     [SerializeField] GameObject _player;
     [SerializeField] int _maxEnemy;
     [SerializeField] float _spawnTime;
+    // Во сколько раз больше будет изначальная скорость по сравнению с игроком
+    [SerializeField] float _multiplierSpeed;
 
     float _timer;
 
@@ -24,7 +26,7 @@ public class SpawnEnemy : MonoBehaviour
 
             Instantiate(_prefabEnemy)
                 .GetComponent<Enemy>()
-                .Initialize(_lineManager, lineId, _player);
+                .Initialize(_lineManager, lineId, _player, _multiplierSpeed);
 
             EnemyCount++;
             _timer = 0f;

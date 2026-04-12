@@ -1,10 +1,19 @@
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
 public class PlayerCollision : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    [SerializeField] GameManager _gameManager;
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
-            Destroy(collision.gameObject);
+        if (hit.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(hit.gameObject);
+        }
+        else if (hit.gameObject.CompareTag("Wall"))
+        {
+            _gameManager.GameLose();
+        }
     }
 }

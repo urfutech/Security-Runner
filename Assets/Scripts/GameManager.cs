@@ -6,6 +6,10 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI ScoreText;
 
     [SerializeField] Transform _player;
+    [SerializeField] SpawnEnemy _spawnEnemy;
+    [SerializeField] WallsSpawner _wallsSpawner;
+    [SerializeField] PlayerMove _playerMove;
+    [SerializeField] GameObject _canvasLose;
 
     void Start()
     {
@@ -15,5 +19,14 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         ScoreText.text = $"Счёт: {(int)_player.position.x}";
+    }
+
+    public void GameLose()
+    {
+        _spawnEnemy.enabled = false;
+        _wallsSpawner.enabled = false;
+        _playerMove.enabled = false;
+
+        _canvasLose.SetActive(true);
     }
 }

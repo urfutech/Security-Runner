@@ -5,28 +5,28 @@ public class Enemy : MonoBehaviour
     [SerializeField] int _currentLineId;
 
     LineManager _lineManager;
-    GameObject _player;
+    Transform _playerTransform;
     bool _needBoost;
     float _speed;
 
-    public void Initialize(LineManager lineManager, int currentLineId, GameObject player, float mult)
+    public void Initialize
+        (LineManager lineManager, int currentLineId, Transform playerTransform, PlayerMove playerMove, float mult)
     {
         _currentLineId = currentLineId;
         _lineManager = lineManager;
-        _player = player;
-        _speed = _player.GetComponent<PlayerMove>().GetSpeed() * mult;
+        _playerTransform = playerTransform;
+        _speed = playerMove.GetSpeed() * mult;
         _needBoost = true;
-        transform
-            .SetPositionAndRotation(
-            new(player.transform.position.x - 2, player.transform.position.y + 1, _lineManager.Lines[_currentLineId]), 
-            player.transform.rotation);
+        transform.SetPositionAndRotation(
+            new(_playerTransform.position.x - 2, 1, _lineManager.Lines[_currentLineId]),
+            _playerTransform.rotation);
     }
 
     private void Update()
     {
         if (_needBoost)
         {
-            if (_player.transform.position.x > transform.position.x - 2)
+            if (_playerTransform.position.x > transform.position.x - 2)
                 transform.position += _speed * 2 * Time.deltaTime * transform.forward;
             else
                 _needBoost = false;
@@ -35,5 +35,8 @@ public class Enemy : MonoBehaviour
         {
             transform.position += _speed * Time.deltaTime * transform.forward;
         }
+
+        if (_playerTransform.position.x - 5 > transform.position.x)
+            Destroy(gameObject);
     }
 }

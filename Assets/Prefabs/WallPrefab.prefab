@@ -101,7 +101,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 191929542115479079}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1481f41f377641b4c89d7cf9849e66c2, type: 3}
+  m_Script: {fileID: 11500000, guid: fa022254515d43b499a2129279a397fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Wall
 --- !u!65 &6867959442980901251

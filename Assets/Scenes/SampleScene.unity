@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: c5ae5c5dd4fba448e9afa64b4efda9e7, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: c82a334cf5a5e47978749c210cee72a7, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -984,16 +984,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 954963340}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87c08a6d383750540a0fb573d2cd8c61, type: 3}
+  m_Script: {fileID: 11500000, guid: 07fe26bbfa6d2f247be139e39123fd08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnEnemy
   _lineManager: {fileID: 1510786865}
-  _prefabEnemy: {fileID: 8766555275431507259, guid: 15dc1acd9d917824192c412a24e13164, type: 3}
+  _prefabEnemy: {fileID: 8766555275431507259, guid: 4220a5aec1424da47a429e2e6f018703, type: 3}
   _playerTransform: {fileID: 1104096039}
   _playerMove: {fileID: 1104096040}
-  _maxEnemy: 10
-  _spawnTime: 2.5
-  _multiplierSpeed: 1.5
+  _maxEnemy: 3
+  _spawnTime: 10
+  _multiplierSpeed: 10
 --- !u!4 &954963342
 Transform:
   m_ObjectHideFlags: 0
@@ -1171,9 +1171,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
   _speedForward: 10
-  _speedForwardChange: 0.01
+  _speedForwardChange: 0.002
   _speedChangeLine: 25
-  _gravityForce: 67
+  _gravityForce: 69
   _jumpForce: 22
   _lineManager: {fileID: 1510786865}
   _road1: {fileID: 1373848028}
@@ -1212,10 +1212,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1104096037}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2a9defecc018fe40bee50615f912c8b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c2f2f1ec5d25374f96a84bcce219831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCollision
-  _gameManager: {fileID: 0}
+  _gameManager: {fileID: 1798608380}
 --- !u!1 &1123760760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1321,8 +1321,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0421\u0447\u0451\u0442: \u0425\u0425\u0425\u0425\u0425"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1598,8 +1598,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bccf2b25f4530cb4cab45e640ed8e81b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RestartButton
-  _score: {fileID: 1915587979}
-  _player: {fileID: 1104096039}
 --- !u!1 &1373848028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1754,14 +1752,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1413142634}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcfcadeab47f3c346a887e293bda202b, type: 3}
+  m_Script: {fileID: 11500000, guid: f75400d897b48974fb0d3832cbb9586f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WallsSpawner
   _lineManager: {fileID: 1510786865}
-  _prefabWall: {fileID: 191929542115479079, guid: 43131118b6781b846998400615515f1d, type: 3}
+  _prefabWall: {fileID: 191929542115479079, guid: 073d47a2035c1584389c55c08814895b, type: 3}
   _playerTransform: {fileID: 1104096039}
   _maxWalls: 5
-  _spawnTime: 10
+  _spawnTime: 5
 --- !u!1 &1473152664
 GameObject:
   m_ObjectHideFlags: 0
@@ -1821,14 +1819,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1510786864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f132b8150161e7049a173e5c39df3f42, type: 3}
+  m_Script: {fileID: 11500000, guid: 74ad62990d3ddfe429ad5e9f5f44f609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LineManager
   Lines:
-  - -3.4
+  - -3
   - 0
-  - 3.4
-  DefaultLineId: 1
+  - 3
+  DefaultLineId: 0
 --- !u!4 &1510786866
 Transform:
   m_ObjectHideFlags: 0
@@ -2128,7 +2126,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1798608379}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6155fdb9477293a43a2f23909e4448bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 243748cef3cfcbd488d09493fe02c14a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   ScoreText: {fileID: 1248128315}

@@ -6,7 +6,7 @@ public class PlayerMove : MonoBehaviour
     public int CurrentLineId { get; private set; }
 
     [SerializeField] float _speedForward;
-    [SerializeField] float _speedForwardChange;
+    const float _speedForwardChange = 1;
     [SerializeField] float _speedChangeLine;
     [SerializeField] float _gravityForce;
     [SerializeField] float _jumpForce;

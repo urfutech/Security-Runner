@@ -3,22 +3,24 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMove : MonoBehaviour
 {
+    const float GravityForce = 67;
+    const float SpeedForwardChange = 0.01f;
+    const float JumpForce = 22;
+    const float SpeedChangeLine = 25;
+
     public int CurrentLineId { get; private set; }
 
     [SerializeField] float _speedForward;
-    const float _speedForwardChange = 1;
-    [SerializeField] float _speedChangeLine;
-    [SerializeField] float _gravityForce;
-    [SerializeField] float _jumpForce;
+    [SerializeField] float _maxSpeed;
     [SerializeField] LineManager _lineManager;
     [SerializeField] GameObject _road1;
     [SerializeField] GameObject _road2;
 
-    bool _isChangeLine;
-    CharacterController _charController;
-    float _verticalSpeed;
+    private bool _isChangeLine;
+    private CharacterController _charController;
+    private float _verticalSpeed;
 
-    void Initialize()  // Нужно ли это?
+    void Initialize()  // Нужно ли это? - На всякий пожарный
     {  
         _road2.transform.position = new Vector3(_road1.transform.position.x + 200, 0, 0);
     }
@@ -34,7 +36,11 @@ public class PlayerMove : MonoBehaviour
     {
         Jump();
         MoveCharacter();
+        CheckRoads();
+    }
 
+    private void CheckRoads()
+    {
         if (transform.position.x >= _road1.transform.position.x + 190)
             _road1.transform.position = new Vector3(_road2.transform.position.x + 200, 0, 0);
         if (transform.position.x >= _road2.transform.position.x + 190)
@@ -44,22 +50,27 @@ public class PlayerMove : MonoBehaviour
     void Jump()
     {
         if (Input.GetKeyDown(KeyCode.W) && (_charController.isGrounded || CheckGround()))
-            _verticalSpeed = _jumpForce;
+            _verticalSpeed = JumpForce;
 
         if (!_charController.isGrounded)
-            _verticalSpeed -= _gravityForce * Time.deltaTime;
+            _verticalSpeed -= GravityForce * Time.deltaTime;
         else if (_verticalSpeed < 0)
             _verticalSpeed = 0;
     }
 
     void MoveCharacter()
     {
-        _speedForward += _speedForwardChange;
+        _speedForward += SpeedForwardChange;
+        if (_speedForward > _maxSpeed) _speedForward = _maxSpeed;
         var nextPos = _speedForward * Time.deltaTime * transform.forward;
         nextPos.y = _verticalSpeed * Time.deltaTime;
         _charController.Move(nextPos);
+        CheckDirection();
+    }
 
-        if (Input.GetKeyDown(KeyCode.D) && CurrentLineId > 0)
+    private void CheckDirection()
+    {
+         if (Input.GetKeyDown(KeyCode.D) && CurrentLineId > 0)
         {
             CurrentLineId--;
             _isChangeLine = true;
@@ -69,7 +80,11 @@ public class PlayerMove : MonoBehaviour
             CurrentLineId++;
             _isChangeLine = true;
         }
+        if (_isChangeLine) MoveDirection();
+    }
 
+    private void MoveDirection()
+    {
         if (_isChangeLine)
         {
             var targetPosition = new Vector3(transform.position.x, transform.position.y, _lineManager.Lines[CurrentLineId]);
@@ -82,7 +97,7 @@ public class PlayerMove : MonoBehaviour
             }
             else
             {
-                var moveStep = _speedChangeLine * Time.deltaTime * directionToTarget.normalized;
+                var moveStep = SpeedChangeLine * Time.deltaTime * directionToTarget.normalized;
 
                 if (moveStep.magnitude > directionToTarget.magnitude)
                     moveStep = directionToTarget;

@@ -11,12 +11,13 @@ public class WallsSpawner : MonoBehaviour
     [SerializeField] float _spawnTime;
 
     float _timer;
+    private int _wallsCount = 0;
 
     private void Update()
     {
         _timer += Time.deltaTime;
 
-        if (_timer > _spawnTime && WallsCount < _maxWalls)
+        if (_timer > _spawnTime && _wallsCount < _maxWalls)
         {
             var lineId = Random.Range(0, _lineManager.Lines.Count);
 
@@ -24,7 +25,7 @@ public class WallsSpawner : MonoBehaviour
                 .GetComponent<Wall>()
                 .Initialize(_lineManager, _playerTransform, lineId);
 
-            WallsCount++;
+            _wallsCount++;
             _timer = 0f;
         }
     }

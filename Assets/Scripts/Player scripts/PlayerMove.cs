@@ -15,6 +15,10 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] LineManager _lineManager;
     [SerializeField] GameObject _road1;
     [SerializeField] GameObject _road2;
+    [SerializeField] GameObject _stepRayUpper;
+    [SerializeField] GameObject _stepRayLower;
+    [SerializeField] float _stepHeight;
+    [SerializeField] float _stepSmpoth;
 
     private bool _isChangeLine;
     private CharacterController _charController;

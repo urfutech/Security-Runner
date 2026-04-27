@@ -989,11 +989,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnEnemy
   _lineManager: {fileID: 1510786865}
   _prefabEnemy: {fileID: 8766555275431507259, guid: d42e9e9683d8b1b8ebbd5f4ef66d2136, type: 3}
-  _playerTransform: {fileID: 62275888}
+  _playerTransform: {fileID: 1104096039}
   _playerMove: {fileID: 1104096040}
-  _maxEnemy: 0
-  _spawnTime: 0
-  _multiplierSpeed: 0
+  _maxEnemy: 10
+  _spawnTime: 3
+  _multiplierSpeed: 1
 --- !u!4 &954963342
 Transform:
   m_ObjectHideFlags: 0
@@ -1764,9 +1764,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WallsSpawner
   _lineManager: {fileID: 1510786865}
   _prefabWall: {fileID: 191929542115479079, guid: 450e37590545f33d293f54ffb87a8168, type: 3}
-  _playerTransform: {fileID: 62275888}
-  _maxWalls: 0
-  _spawnTime: 0
+  _playerTransform: {fileID: 1104096039}
+  _maxWalls: 10
+  _spawnTime: 3
 --- !u!1 &1473152664
 GameObject:
   m_ObjectHideFlags: 0

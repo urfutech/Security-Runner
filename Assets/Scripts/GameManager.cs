@@ -10,6 +10,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] WallsSpawner _wallsSpawner;
     [SerializeField] PlayerMove _playerMove;
     [SerializeField] GameObject _canvasLose;
+    [SerializeField] LineManager _lineManager;
+    [SerializeField] GameObject _edlessField;
+    [SerializeField] GameObject _prefabEnemy;
+    [SerializeField] GameObject _prefabWall;
+
 
     void Start()
     {

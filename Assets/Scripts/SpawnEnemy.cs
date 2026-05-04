@@ -11,10 +11,11 @@ public class SpawnEnemy : MonoBehaviour
     [SerializeField] float _spawnTime;
     // Во сколько раз больше будет изначальная скорость по сравнению с игроком
     [SerializeField] float _multiplierSpeed;
-
-    float _timer;
     [SerializeField] Transform _playerTransform;
     [SerializeField] PlayerMove _playerMove;
+
+    float _timer;
+    private int _maxEnemies = 1;
 
     // private void Initialize()
     // {
@@ -24,7 +25,7 @@ public class SpawnEnemy : MonoBehaviour
     {
         _timer += Time.deltaTime;
 
-        if (_timer > _spawnTime && EnemyCount < _maxEnemy)
+        if (_timer > _spawnTime && EnemyCount < _maxEnemies)
         {
             var lineId = Random.Range(0, _lineManager.Lines.Count);
             if (lineId == _playerMove.CurrentLineId)

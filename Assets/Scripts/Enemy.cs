@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
         _needBoost = true;
         _playerMove = playerMove;
         transform.SetPositionAndRotation(
-            new(_playerTransform.position.x + 2, 1, _lineManager.Lines[_currentLineId]),
+            new(_playerTransform.position.x + 2, 0, _lineManager.Lines[_currentLineId]),
             _playerTransform.rotation);
     }
 

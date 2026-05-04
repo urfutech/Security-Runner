@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WallsSpawner : MonoBehaviour
@@ -9,6 +10,8 @@ public class WallsSpawner : MonoBehaviour
 
     float _timer;
     private int _wallsCount = 0;
+    private Queue<Wall> _walls;
+
 
     private void Update()
     {
@@ -20,6 +23,7 @@ public class WallsSpawner : MonoBehaviour
 
             var newWall = Instantiate(_prefabWall)
                 .GetComponent<Wall>();
+
             newWall.Initialize(_lineManager, _playerTransform, lineId);
 
             _timer = 0f;

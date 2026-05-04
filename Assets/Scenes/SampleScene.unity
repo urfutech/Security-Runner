@@ -198,6 +198,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &96186648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 96186649}
+  - component: {fileID: 96186650}
+  m_Layer: 0
+  m_Name: CoinsSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &96186649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96186648}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1123760761}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &96186650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96186648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c51b113adf2c58b29bcd1c378f61fcc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CoinsSpawner
+  _numberOfCoinsInLevel: 0
+  _lineManager: {fileID: 1510786865}
+  _prefabCoin: {fileID: 6772868703268931261, guid: 0d06ed918520c40cd90605ea30a0044c, type: 3}
+  _playerTransform: {fileID: 1104096039}
+  _gameManager: {fileID: 1798608380}
 --- !u!1 &101496246
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,6 +1007,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 843700751}
   m_CullTransparentMesh: 1
+--- !u!1001 &870157886
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1104096039}
+    m_Modifications:
+    - target: {fileID: 3120262791068735254, guid: 0d06ed918520c40cd90605ea30a0044c, type: 3}
+      propertyPath: _rotationSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6772868703268931261, guid: 0d06ed918520c40cd90605ea30a0044c, type: 3}
+      propertyPath: m_Name
+      value: Coin
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924587574900448465, guid: 0d06ed918520c40cd90605ea30a0044c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.16505599
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924587574900448465, guid: 0d06ed918520c40cd90605ea30a0044c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924587574900448465, guid: 0d06ed918520c40cd90605ea30a0044c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.1824923
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924587574900448465, guid: 0d06ed918520c40cd90605ea30a0044c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924587574900448465, guid: 0d06ed918520c40cd90605ea30a0044c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924587574900448465, guid: 0d06ed918520c40cd90605ea30a0044c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924587574900448465, guid: 0d06ed918520c40cd90605ea30a0044c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924587574900448465, guid: 0d06ed918520c40cd90605ea30a0044c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924587574900448465, guid: 0d06ed918520c40cd90605ea30a0044c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924587574900448465, guid: 0d06ed918520c40cd90605ea30a0044c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0d06ed918520c40cd90605ea30a0044c, type: 3}
 --- !u!1 &954963340
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,13 +1097,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfeda6406fc6d7dabed53998928cee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnEnemy
+  _gameManager: {fileID: 1798608380}
   _lineManager: {fileID: 1510786865}
   _prefabEnemy: {fileID: 8766555275431507259, guid: d42e9e9683d8b1b8ebbd5f4ef66d2136, type: 3}
-  _playerTransform: {fileID: 1104096039}
-  _playerMove: {fileID: 1104096040}
   _maxEnemy: 10
   _spawnTime: 1
   _multiplierSpeed: 1
+  _playerTransform: {fileID: 1104096039}
+  _playerMove: {fileID: 1104096040}
 --- !u!4 &954963342
 Transform:
   m_ObjectHideFlags: 0
@@ -1156,6 +1267,7 @@ Transform:
   m_Children:
   - {fileID: 1842817356}
   - {fileID: 1211334862}
+  - {fileID: 1731329421}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &1104096040
@@ -1172,7 +1284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
   _speedForward: 5
   _maxSpeed: 20
-  _lineManager: {fileID: 0}
+  _lineManager: {fileID: 1510786865}
   _road1: {fileID: 1373848028}
   _road2: {fileID: 968558964}
   _stepRayUpper: {fileID: 0}
@@ -1248,6 +1360,7 @@ Transform:
   m_Children:
   - {fileID: 954963342}
   - {fileID: 1413142635}
+  - {fileID: 96186649}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1211334861
@@ -2137,6 +2250,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1696950488}
   m_CullTransparentMesh: 1
+--- !u!4 &1731329421 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6924587574900448465, guid: 0d06ed918520c40cd90605ea30a0044c, type: 3}
+  m_PrefabInstance: {fileID: 870157886}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1798608379
 GameObject:
   m_ObjectHideFlags: 0
@@ -2167,15 +2285,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   ScoreText: {fileID: 1248128315}
-  _player: {fileID: 1104096039}
-  _spawnEnemy: {fileID: 954963341}
-  _wallsSpawner: {fileID: 1413142636}
-  _playerMove: {fileID: 1104096040}
-  _canvasLose: {fileID: 423292449}
-  _lineManager: {fileID: 1510786865}
-  _edlessField: {fileID: 2046096355}
-  _prefabEnemy: {fileID: 8766555275431507259, guid: d42e9e9683d8b1b8ebbd5f4ef66d2136, type: 3}
-  _prefabWall: {fileID: 191929542115479079, guid: 450e37590545f33d293f54ffb87a8168, type: 3}
+  PlayerTransform: {fileID: 1104096039}
+  PlayerMove: {fileID: 1104096040}
+  CanvasLose: {fileID: 1289914349}
+  LineManager: {fileID: 1510786865}
+  EdlessField: {fileID: 2046096355}
+  EnemySpawner: {fileID: 954963341}
+  PrefabEnemy: {fileID: 8766555275431507259, guid: d42e9e9683d8b1b8ebbd5f4ef66d2136, type: 3}
+  WallsSpawner: {fileID: 1413142636}
+  PrefabWall: {fileID: 191929542115479079, guid: 450e37590545f33d293f54ffb87a8168, type: 3}
+  CoinsSpawner: {fileID: 96186650}
 --- !u!4 &1798608381
 Transform:
   m_ObjectHideFlags: 0

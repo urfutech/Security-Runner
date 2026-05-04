@@ -3,6 +3,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] int _currentLineId;
+    [SerializeField] GameManager _gameManager;
 
     LineManager _lineManager;
     Transform _playerTransform;

@@ -5,15 +5,16 @@ public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI ScoreText;
 
-    [SerializeField] Transform _player;
-    [SerializeField] SpawnEnemy _spawnEnemy;
-    [SerializeField] WallsSpawner _wallsSpawner;
-    [SerializeField] PlayerMove _playerMove;
-    [SerializeField] GameObject _canvasLose;
-    [SerializeField] LineManager _lineManager;
-    [SerializeField] GameObject _edlessField;
-    [SerializeField] GameObject _prefabEnemy;
-    [SerializeField] GameObject _prefabWall;
+    [SerializeField] public Transform PlayerTransform;
+    [SerializeField] public PlayerMove PlayerMove;
+    [SerializeField] public GameObject CanvasLose;
+    [SerializeField] public LineManager LineManager;
+    [SerializeField] public GameObject EdlessField;
+    [SerializeField] public SpawnEnemy EnemySpawner;
+    [SerializeField] public GameObject PrefabEnemy;
+    [SerializeField] public WallsSpawner WallsSpawner;
+    [SerializeField] public GameObject PrefabWall;
+    [SerializeField] public CoinsSpawner CoinsSpawner;
 
 
     void Start()
@@ -23,15 +24,15 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        ScoreText.text = $"Счёт: {(int)_player.position.x}";
+        ScoreText.text = $"Счёт: {(int)PlayerTransform.position.x}";
     }
 
     public void GameLose()
     {
-        _spawnEnemy.enabled = false;
-        _wallsSpawner.enabled = false;
-        _playerMove.enabled = false;
+        EnemySpawner.enabled = false;
+        WallsSpawner.enabled = false;
+        PlayerMove.enabled = false;
 
-        _canvasLose.SetActive(true);
+        CanvasLose.SetActive(true);
     }
 }

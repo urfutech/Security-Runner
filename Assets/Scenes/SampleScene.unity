@@ -1763,9 +1763,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1289914349}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bccf2b25f4530cb4cab45e640ed8e81b, type: 3}
+  m_Script: {fileID: 11500000, guid: 16e812e65f79ebb39a7c1d24ccc11c3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RestartButton
+  _score: {fileID: 1915587979}
+  _player: {fileID: 1104096039}
 --- !u!1 &1373848028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2216,8 +2218,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0423\u043F\u0441..."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 36feb6355c5970bb789f94e5255507f0, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 36feb6355c5970bb789f94e5255507f0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2545,8 +2547,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0412\u0430\u0448 \u0441\u0447\u0451\u0442: \u0425\u0425\u0425\u0425\u0425"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f9bf591fa807eab8db48b1babc740266, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: f9bf591fa807eab8db48b1babc740266, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2570,7 +2572,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.75
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

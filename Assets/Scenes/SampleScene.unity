@@ -242,10 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c51b113adf2c58b29bcd1c378f61fcc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoinsSpawner
-  _numberOfCoinsInLevel: 0
-  _lineManager: {fileID: 1510786865}
   _prefabCoin: {fileID: 6772868703268931261, guid: 0d06ed918520c40cd90605ea30a0044c, type: 3}
-  _playerTransform: {fileID: 1104096039}
   _gameManager: {fileID: 1798608380}
 --- !u!1 &101496246
 GameObject:
@@ -1346,13 +1343,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnEnemy
   _gameManager: {fileID: 1798608380}
-  _lineManager: {fileID: 1510786865}
   _prefabEnemy: {fileID: 6087800929167571106, guid: 74bc2140c948cd2108368a40ab7bfe3b, type: 3}
   _maxEnemy: 10
   _spawnTime: 1
   _multiplierSpeed: 1
-  _playerTransform: {fileID: 1104096039}
-  _playerMove: {fileID: 1104096040}
 --- !u!4 &954963342
 Transform:
   m_ObjectHideFlags: 0
@@ -1535,7 +1529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
   _speedForward: 5
-  _maxSpeed: 20
+  _maxSpeed: 100
   _lineManager: {fileID: 1510786865}
   _road1: {fileID: 1373848028}
   _road2: {fileID: 968558964}
@@ -1952,9 +1946,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c454bdf52db749108869845123cd761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WallsSpawner
-  _lineManager: {fileID: 1510786865}
+  _gameManager: {fileID: 1798608380}
   _prefabWall: {fileID: 191929542115479079, guid: 450e37590545f33d293f54ffb87a8168, type: 3}
-  _playerTransform: {fileID: 1104096039}
   _spawnTime: 1
 --- !u!1 &1473152664
 GameObject:
@@ -2330,11 +2323,8 @@ MonoBehaviour:
   PlayerMove: {fileID: 1104096040}
   CanvasLose: {fileID: 1289914349}
   LineManager: {fileID: 1510786865}
-  EdlessField: {fileID: 2046096355}
   EnemySpawner: {fileID: 954963341}
-  PrefabEnemy: {fileID: 8766555275431507259, guid: d42e9e9683d8b1b8ebbd5f4ef66d2136, type: 3}
   WallsSpawner: {fileID: 1413142636}
-  PrefabWall: {fileID: 191929542115479079, guid: 450e37590545f33d293f54ffb87a8168, type: 3}
   CoinsSpawner: {fileID: 96186650}
 --- !u!4 &1798608381
 Transform:

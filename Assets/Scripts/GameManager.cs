@@ -5,20 +5,25 @@ public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI ScoreText;
 
-    [SerializeField] public Transform PlayerTransform;
-    [SerializeField] public PlayerMove PlayerMove;
-    [SerializeField] public GameObject CanvasLose;
-    [SerializeField] public LineManager LineManager;
-    [SerializeField] public GameObject EdlessField;
-    [SerializeField] public SpawnEnemy EnemySpawner;
-    [SerializeField] public GameObject PrefabEnemy;
-    [SerializeField] public WallsSpawner WallsSpawner;
-    [SerializeField] public GameObject PrefabWall;
-    [SerializeField] public CoinsSpawner CoinsSpawner;
+    public Transform PlayerTransform;
+    public PlayerMove PlayerMove;
+    public GameObject CanvasLose;
+    public LineManager LineManager;
+    public SpawnEnemy EnemySpawner;
+    public WallsSpawner WallsSpawner;
+    public CoinsSpawner CoinsSpawner;
 
 
     void Start()
     {
+        if (PlayerTransform == null) Debug.LogError("PlayerTransform не назначен");
+        if (PlayerMove == null) Debug.LogError("PlayerMove не назначен");
+        if (CanvasLose == null) Debug.LogError("CanvasLose не назначен");
+        if (LineManager == null) Debug.LogError("LineManager не назначен");
+        if (EnemySpawner == null) Debug.LogError("EnemySpawner не назначен");
+        if (WallsSpawner == null) Debug.LogError("WallsSpawner не назначен");
+        if (CoinsSpawner == null) Debug.LogError("CoinsSpawner не назначен");
+
         ScoreText.text = "Счёт: 0";
     }
 

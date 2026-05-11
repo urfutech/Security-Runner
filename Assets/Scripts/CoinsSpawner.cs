@@ -6,16 +6,21 @@ public class CoinsSpawner: MonoBehaviour
 {
     const float _spawnTime = 1f;
 
-    [SerializeField] private int _numberOfCoinsInLevel;
-    //[SerializeField] TextMeshProUGUI _text;
-    [SerializeField] LineManager _lineManager;
+    // [SerializeField] TextMeshProUGUI _text;
     [SerializeField] GameObject _prefabCoin;
-    [SerializeField] Transform _playerTransform;
     [SerializeField] GameManager _gameManager;
 
+    int _numberOfCoinsInLevel;
     float _timer;
-    private int _wallsCount = 0;
+    int _lineCount;
 
+    private void Start()
+    {
+        if (_gameManager == null) Debug.LogError("GameManager не назначен");
+        if (_prefabCoin == null) Debug.LogError("Префаб монеты не найден");
+
+        _lineCount = _gameManager.LineManager.Lines.Count;
+    }
 
     private void Update()
     {
@@ -23,11 +28,11 @@ public class CoinsSpawner: MonoBehaviour
 
         if (_timer > _spawnTime)
         {
-            var lineId = Random.Range(0, _lineManager.Lines.Count);
+            var lineId = Random.Range(0, _lineCount);
 
             Instantiate(_prefabCoin)
                 .GetComponent<Coin>()
-                .Initialize(_gameManager, _lineManager, lineId);
+                .Initialize(_gameManager, lineId);
             AddOne();
 
             _timer = 0f;

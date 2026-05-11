@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Wall : MonoBehaviour
@@ -14,6 +15,11 @@ public class Wall : MonoBehaviour
     private void Update()
     {
         if (_playerTransform.position.x - 5 > transform.position.x)
+        {
+            Destroyed?.Invoke(this);
             Destroy(gameObject);
+        }
     }
+
+    public event Action<Wall> Destroyed;
 }

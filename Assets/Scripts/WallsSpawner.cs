@@ -1,16 +1,25 @@
-using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class WallsSpawner : MonoBehaviour
 {
-    [SerializeField] LineManager _lineManager;
+    [SerializeField] GameManager _gameManager;
     [SerializeField] GameObject _prefabWall;
-    [SerializeField] Transform _playerTransform;
     [SerializeField] float _spawnTime;
 
     float _timer;
-    private int _wallsCount = 0;
-    private Queue<Wall> _walls;
+    int _wallsCount;
+    int _linesCount;
+    Transform _playerTransform;
+
+    private void Start()
+    {
+        if (_gameManager == null) Debug.LogError("GameManager не назначен");
+        if (_prefabWall == null) Debug.LogError("Префаб стены не найден");
+
+        _playerTransform = _gameManager.PlayerTransform;
+        _linesCount = _gameManager.LineManager.Lines.Count;
+    }
 
 
     private void Update()
@@ -19,14 +28,20 @@ public class WallsSpawner : MonoBehaviour
 
         if (_timer > _spawnTime)
         {
-            var lineId = Random.Range(0, _lineManager.Lines.Count);
+            var lineId = Random.Range(0, _linesCount);
+            var newWall = Instantiate(_prefabWall).GetComponent<Wall>();
 
-            var newWall = Instantiate(_prefabWall)
-                .GetComponent<Wall>();
-
-            newWall.Initialize(_lineManager, _playerTransform, lineId);
+            newWall.Initialize(_gameManager.LineManager, _playerTransform, lineId);
+            newWall.Destroyed += DestroyWall;
+            _wallsCount++;
 
             _timer = 0f;
         }
+    }
+
+    private void DestroyWall(Wall wall)
+    {
+        wall.Destroyed -= DestroyWall;
+        _wallsCount--;
     }
 }

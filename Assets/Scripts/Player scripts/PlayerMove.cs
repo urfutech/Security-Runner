@@ -7,6 +7,7 @@ public class PlayerMove : MonoBehaviour
     const float SpeedForwardChange = 0.01f;
     const float JumpForce = 22;
     const float SpeedChangeLine = 25;
+    const float StartSpeed = 10;
 
     public int CurrentLineId { get; private set; }
 
@@ -20,17 +21,19 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] float _stepHeight;
     [SerializeField] float _stepSmpoth;
 
-    private bool _isChangeLine;
-    private CharacterController _charController;
-    private float _verticalSpeed;
-
-    void Initialize()  // Нужно ли это? - На всякий пожарный
-    {  
-        _road2.transform.position = new Vector3(_road1.transform.position.x + 200, 0, 0);
-    }
+    bool _isChangeLine;
+    CharacterController _charController;
+    float _verticalSpeed;
 
     private void Start()
     {
+        if (_lineManager == null) Debug.LogError("LineManager не назначен");
+        if (_road1 == null) Debug.LogError("Road1 не назначен");
+        if (_road2 == null) Debug.LogError("Road2 не назначен");
+        if (_stepRayUpper == null) Debug.LogError("StepRayUpper не назначен");
+        if (_stepRayLower == null) Debug.LogError("StepRayLower не назначен");
+
+        _speedForward = _speedForward < StartSpeed ? StartSpeed : _speedForward;
         CurrentLineId = _lineManager.DefaultLineId;
         _charController = GetComponent<CharacterController>();
     }
@@ -111,7 +114,12 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    public void ChangeSpeed(float speed)
+    { 
+        _speedForward = _speedForward + speed < StartSpeed ? StartSpeed : _speedForward + speed; 
+    }
+
     bool CheckGround() => Physics.Raycast(transform.position, Vector3.down, 0.05f);
 
-    public float GetSpeed() => _speedForward;
+    public float GetSpeed => _speedForward;
 }

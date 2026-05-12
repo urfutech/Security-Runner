@@ -67,7 +67,9 @@ public class PlayerMove : MonoBehaviour
 
     void MoveCharacter()
     {
-        _speedForward += SpeedForwardChange;
+        _speedForward += 
+            SpeedForwardChange
+            * Time.deltaTime;
         if (_speedForward > _maxSpeed) _speedForward = _maxSpeed;
         var nextPos = _speedForward * Time.deltaTime * transform.forward;
         nextPos.y = _verticalSpeed * Time.deltaTime;
@@ -122,4 +124,9 @@ public class PlayerMove : MonoBehaviour
     bool CheckGround() => Physics.Raycast(transform.position, Vector3.down, 0.05f);
 
     public float GetSpeed => _speedForward;
+
+    public float GetMaxSpeed => _maxSpeed;
+
+    public float GetSpawnTiming => 
+        _speedForward * 0.1f;
 }

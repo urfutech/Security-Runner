@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CoinsSpawner: MonoBehaviour
 {
-    const float _spawnTime = 1f;
+    const float _spawnTime = 0.3f;
 
     // [SerializeField] TextMeshProUGUI _text;
     [SerializeField] GameObject _prefabCoin;
@@ -13,6 +14,7 @@ public class CoinsSpawner: MonoBehaviour
     int _numberOfCoinsInLevel;
     float _timer;
     int _lineCount;
+    private Queue<Transform> _walls;
 
     private void Start()
     {
@@ -29,6 +31,12 @@ public class CoinsSpawner: MonoBehaviour
         if (_timer > _spawnTime)
         {
             var lineId = Random.Range(0, _lineCount);
+
+            while (_gameManager.WallsSpawner
+                .Walls.Peek().position.x == lineId)
+            {
+                lineId = Random.Range(0, _lineCount);
+            }
 
             Instantiate(_prefabCoin)
                 .GetComponent<Coin>()

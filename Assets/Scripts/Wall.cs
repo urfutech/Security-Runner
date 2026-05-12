@@ -1,15 +1,18 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
-    Transform _playerTransform;
+    private GameManager _gameManager;
+    private Transform _playerTransform;
+    private Queue<Transform> _walls;
 
-    public void Initialize(LineManager lineManager, Transform playerTransform, int lineId)
+    public void Initialize(GameManager _gameManager,
+        Queue<Transform> walls, int lineId)
     {
-        _playerTransform = playerTransform;
-
-        transform.position = new(_playerTransform.position.x + 50, 2, lineManager.Lines[lineId]);
+        _playerTransform = _gameManager.PlayerTransform;
+        _walls = _gameManager.WallsSpawner.Walls;
     }
 
     private void Update()

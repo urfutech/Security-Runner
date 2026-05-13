@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3120262791068735254}
   m_Layer: 0
   m_Name: Coin
-  m_TagString: Untagged
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,7 +49,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -67,7 +67,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5dd75d8bbb1c583bf91e45c25f8f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  _rotationSpeed: 0.2
 --- !u!1001 &6419962343183448398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -122,6 +121,10 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: cfdd49be35e5f7ed78cb7328a3d5fa42, type: 2}
     - target: {fileID: 919132149155446097, guid: c20aac75cdc8b3e378b449fd9b6979a7, type: 3}
       propertyPath: m_Name
+      value: Coin
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c20aac75cdc8b3e378b449fd9b6979a7, type: 3}
+      propertyPath: m_TagString
       value: Coin
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -6,11 +6,8 @@ public class CoinsSpawner: MonoBehaviour
 {
     const float _spawnTime = 0.3f;
 
-    [SerializeField] TextMeshProUGUI _text;
     [SerializeField] GameObject _prefabCoin;
 
-    int _numberOfCoinsInLevel;
-    int _score;
     float _timer;
     int _lineCount;
     WallsSpawner _wallsSpawner;
@@ -19,11 +16,9 @@ public class CoinsSpawner: MonoBehaviour
     private void Start()
     {
         if (_prefabCoin == null) Debug.LogError("Префаб монеты не найден");
-        if (_text == null) Debug.LogError("Text не назначен");
 
         _wallsSpawner = GameManager.Instance.WallsSpawner;
         _lineCount = GameManager.Instance.LineManager.Lines.Count;
-        _text.text = "0";
     }
 
     private void Update()
@@ -45,16 +40,5 @@ public class CoinsSpawner: MonoBehaviour
 
             _timer = 0f;
         }
-    }
-
-    public void DestroyedOne()
-    {
-        _numberOfCoinsInLevel--;
-    }
-
-    public void AddOne()
-    {
-        _score++;
-        _text.text = _score.ToString();
     }
 }

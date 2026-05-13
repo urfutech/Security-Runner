@@ -9,7 +9,7 @@ public class LoseMenu : MonoBehaviour
 
     private void Start()
     {
-        _score = GameManager.Instance.ScoreText;
+        _score = GameManager.Instance.ScoreTextLoseMenu;
         _playerTransform = GameManager.Instance.PlayerTransform;
     }
 

@@ -4,10 +4,12 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour
 {
     PlayerMove _playerMove;
+    Progress _progress;
 
     private void Start()
     {
         _playerMove = GameManager.Instance.PlayerMove;
+        _progress = Progress.Instance;
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -23,6 +25,11 @@ public class PlayerCollision : MonoBehaviour
         else if (hit.gameObject.CompareTag("Wall"))
         {
             GameManager.Instance.GameLose();
+        }
+        else if (hit.gameObject.CompareTag("Coin"))
+        {
+            hit.gameObject.GetComponent<Coin>().Die();
+            _progress.AddCoin();
         }
     }
 }

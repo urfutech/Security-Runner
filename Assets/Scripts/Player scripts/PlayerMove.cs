@@ -13,7 +13,6 @@ public class PlayerMove : MonoBehaviour
 
     [SerializeField] float _speedForward;
     [SerializeField] float _maxSpeed;
-    [SerializeField] LineManager _lineManager;
     [SerializeField] GameObject _road1;
     [SerializeField] GameObject _road2;
     [SerializeField] GameObject _stepRayUpper;
@@ -24,15 +23,16 @@ public class PlayerMove : MonoBehaviour
     bool _isChangeLine;
     CharacterController _charController;
     float _verticalSpeed;
+    LineManager _lineManager;
 
     private void Start()
     {
-        if (_lineManager == null) Debug.LogError("LineManager не назначен");
         if (_road1 == null) Debug.LogError("Road1 не назначен");
         if (_road2 == null) Debug.LogError("Road2 не назначен");
         if (_stepRayUpper == null) Debug.LogError("StepRayUpper не назначен");
         if (_stepRayLower == null) Debug.LogError("StepRayLower не назначен");
 
+        _lineManager = GameManager.Instance.LineManager;
         _speedForward = _speedForward < StartSpeed ? StartSpeed : _speedForward;
         CurrentLineId = _lineManager.DefaultLineId;
         _charController = GetComponent<CharacterController>();

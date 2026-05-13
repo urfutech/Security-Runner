@@ -4,14 +4,16 @@ public class Coin : MonoBehaviour
 {
     const float _rotationMultiPlayer = 15;
 
-    GameManager _gameManager;
     Transform _playerTransform;
+    PlayerMove _playerMove;
+    CoinsSpawner _coinsSpawner;
 
     public void Initialize(GameManager gameManager, int lineId)
     {
         var playerTransform = gameManager.PlayerTransform;
-        _gameManager = gameManager;
-        _playerTransform = _gameManager.PlayerTransform;
+        _playerTransform = GameManager.Instance.PlayerTransform;
+        _playerMove = GameManager.Instance.PlayerMove;
+        _coinsSpawner = GameManager.Instance.CoinsSpawner;
 
         transform.position = new(playerTransform.position.x + 50, 1.2f, gameManager.LineManager.Lines[lineId]);
     }
@@ -20,13 +22,13 @@ public class Coin : MonoBehaviour
     {
         var rotationSpeed = _rotationMultiPlayer 
             * Time.deltaTime
-            * _gameManager.PlayerMove.GetSpeed;
+            * _playerMove.GetSpeed;
 
         transform.Rotate(0, rotationSpeed, 0);
 
         if (_playerTransform.position.x - 5 > transform.position.x)
         {
-            _gameManager.CoinsSpawner.DestroyedOne();
+            _coinsSpawner.DestroyedOne();
             Destroy(gameObject);
         }
     }

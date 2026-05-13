@@ -9,15 +9,14 @@ public class Enemy : MonoBehaviour
     float _speed;
     PlayerMove _playerMove;
 
-    public void Initialize
-        (GameManager gameManager, int currentLineId, float mult)
+    public void Initialize(int currentLineId, float mult)
     {
         _currentLineId = currentLineId;
-        _lineManager = gameManager.LineManager;
-        _playerTransform = gameManager.PlayerTransform;
-        _speed = gameManager.PlayerMove.GetSpeed;
+        _lineManager = GameManager.Instance.LineManager;
+        _playerTransform = GameManager.Instance.PlayerTransform;
+        _speed = GameManager.Instance.PlayerMove.GetSpeed;
         // _needBoost = true;
-        _playerMove = gameManager.PlayerMove;
+        _playerMove = GameManager.Instance.PlayerMove;
         transform.SetPositionAndRotation(
             new(_playerTransform.position.x + 2, 0, _lineManager.Lines[_currentLineId]),
             _playerTransform.rotation);
@@ -44,5 +43,10 @@ public class Enemy : MonoBehaviour
 
         if (_playerTransform.position.x - 5 > transform.position.x)
             Destroy(gameObject);
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 }

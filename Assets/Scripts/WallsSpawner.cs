@@ -8,13 +8,14 @@ public class WallsSpawner : MonoBehaviour
 
     public Queue<Transform> Walls;
 
-    [SerializeField] GameManager _gameManager;
     [SerializeField] GameObject _prefabWall;
     [SerializeField] float _spawnTime;
 
     float _timer;
     int _linesCount;
     Transform _playerTransform;
+    PlayerMove _playerMove;
+    LineManager _lineManager;
     //если удалить инициализацию, то будет кошмар
     private float randomDensity = 1;    
     private float wallsRow;
@@ -22,11 +23,12 @@ public class WallsSpawner : MonoBehaviour
 
     private void Start()
     {
-        if (_gameManager == null) Debug.LogError("GameManager не назначен");
         if (_prefabWall == null) Debug.LogError("Префаб стены не найден");
 
-        _playerTransform = _gameManager.PlayerTransform;
-        _linesCount = _gameManager.LineManager.Lines.Count;
+        _playerMove = GameManager.Instance.PlayerMove;
+        _lineManager = GameManager.Instance.LineManager;
+        _playerTransform = GameManager.Instance.PlayerTransform;
+        _linesCount = GameManager.Instance.LineManager.Lines.Count;
         Debug.Log("Why?");
         Walls = new Queue<Transform>();
         Debug.Log(Walls.Count);
@@ -37,7 +39,7 @@ public class WallsSpawner : MonoBehaviour
     {
         _timer += Time.deltaTime;
         var timer = _timer 
-            * _gameManager.PlayerMove.GetSpeed
+            * _playerMove.GetSpeed
             * ImportantTimerCoef;
 
         var randomPlacemnetCoef = Random.Range(
@@ -50,12 +52,11 @@ public class WallsSpawner : MonoBehaviour
             var newWall = Instantiate(_prefabWall)
                 .GetComponent<Wall>();
 
-            newWall.Initialize(_gameManager,
-                Walls, lineId);
+            newWall.Initialize(Walls);
             newWall.transform.position = new(
                 _playerTransform.position.x + 50,
                 2,
-                _gameManager.LineManager.Lines[lineId]);
+                _lineManager.Lines[lineId]);
 
             Walls.Enqueue(newWall
                 .GetComponent<Transform>());

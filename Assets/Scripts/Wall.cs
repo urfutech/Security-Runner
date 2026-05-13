@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
-    private GameManager _gameManager;
     private Transform _playerTransform;
     private Queue<Transform> _walls;
 
-    public void Initialize(GameManager _gameManager,
-        Queue<Transform> walls, int lineId)
+    public void Initialize(Queue<Transform> walls)
     {
-        _playerTransform = _gameManager.PlayerTransform;
-        _walls = _gameManager.WallsSpawner.Walls;
+        _playerTransform = GameManager.Instance.PlayerTransform;
+        _walls = GameManager.Instance.WallsSpawner.Walls;
     }
 
     private void Update()

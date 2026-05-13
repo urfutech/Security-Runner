@@ -3,26 +3,26 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerCollision : MonoBehaviour
 {
-    [SerializeField] GameManager _gameManager;
+    PlayerMove _playerMove;
 
     private void Start()
     {
-        if (_gameManager == null) Debug.LogError("GameManager не назначен");
+        _playerMove = GameManager.Instance.PlayerMove;
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.gameObject.CompareTag("Enemy"))
         {
-            Destroy(hit.gameObject);
+            hit.gameObject.GetComponent<Enemy>().Die();
         }
         else if (hit.gameObject.CompareTag("Side Wall"))
         {
-            _gameManager.PlayerMove.ChangeSpeed(-_gameManager.PlayerMove.GetSpeed / 3);
+            _playerMove.ChangeSpeed(-_playerMove.GetSpeed / 3);
         }
         else if (hit.gameObject.CompareTag("Wall"))
         {
-            _gameManager.GameLose();
+            GameManager.Instance.GameLose();
         }
     }
 }

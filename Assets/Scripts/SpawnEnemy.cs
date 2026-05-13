@@ -4,8 +4,6 @@ public class SpawnEnemy : MonoBehaviour
 {
     public int EnemyCount { get; private set; }
 
-    [SerializeField] GameManager _gameManager;
-
     [Header("Настройка врага")]
     [SerializeField] GameObject _prefabEnemy;
     [SerializeField] int _maxEnemy;
@@ -21,12 +19,11 @@ public class SpawnEnemy : MonoBehaviour
 
     private void Start()
     {
-        if (_gameManager == null) Debug.LogError("GameManager не назначен");
         if (_prefabEnemy == null) Debug.LogError("Префаб врага не найден");
 
-        _playerTransform = _gameManager.PlayerTransform;
-        _playerMove = _gameManager.PlayerMove;
-        _linesCount = _gameManager.LineManager.Lines.Count;
+        _playerTransform = GameManager.Instance.PlayerTransform;
+        _playerMove = GameManager.Instance.PlayerMove;
+        _linesCount = GameManager.Instance.LineManager.Lines.Count;
     }
 
     private void Update()
@@ -41,7 +38,7 @@ public class SpawnEnemy : MonoBehaviour
 
             Instantiate(_prefabEnemy)
                 .GetComponent<Enemy>()
-                .Initialize(_gameManager, lineId, _multiplierSpeed);
+                .Initialize(lineId, _multiplierSpeed);
 
             EnemyCount++;
             _timer = 0f;

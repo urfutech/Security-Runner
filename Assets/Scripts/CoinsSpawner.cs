@@ -9,18 +9,20 @@ public class CoinsSpawner: MonoBehaviour
 
     // [SerializeField] TextMeshProUGUI _text;
     [SerializeField] GameObject _prefabCoin;
-    [SerializeField] GameManager _gameManager;
 
     int _numberOfCoinsInLevel;
     float _timer;
     int _lineCount;
+    WallsSpawner _wallsSpawner;
+    GameManager _gameManager;
     private Queue<Transform> _walls;
 
     private void Start()
     {
-        if (_gameManager == null) Debug.LogError("GameManager не назначен");
         if (_prefabCoin == null) Debug.LogError("Префаб монеты не найден");
 
+        _gameManager = GameManager.Instance;
+        _wallsSpawner = _gameManager.WallsSpawner;
         _lineCount = _gameManager.LineManager.Lines.Count;
     }
 
@@ -32,7 +34,7 @@ public class CoinsSpawner: MonoBehaviour
         {
             var lineId = Random.Range(0, _lineCount);
 
-            while (_gameManager.WallsSpawner
+            while (_wallsSpawner
                 .Walls.Peek().position.x == lineId)
             {
                 lineId = Random.Range(0, _lineCount);

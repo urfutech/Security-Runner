@@ -1,29 +1,29 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CoinsSpawner: MonoBehaviour
 {
     const float _spawnTime = 0.3f;
 
-    // [SerializeField] TextMeshProUGUI _text;
+    [SerializeField] TextMeshProUGUI _text;
     [SerializeField] GameObject _prefabCoin;
 
     int _numberOfCoinsInLevel;
+    int _score;
     float _timer;
     int _lineCount;
     WallsSpawner _wallsSpawner;
-    GameManager _gameManager;
     private Queue<Transform> _walls;
 
     private void Start()
     {
         if (_prefabCoin == null) Debug.LogError("Префаб монеты не найден");
+        if (_text == null) Debug.LogError("Text не назначен");
 
-        _gameManager = GameManager.Instance;
-        _wallsSpawner = _gameManager.WallsSpawner;
-        _lineCount = _gameManager.LineManager.Lines.Count;
+        _wallsSpawner = GameManager.Instance.WallsSpawner;
+        _lineCount = GameManager.Instance.LineManager.Lines.Count;
+        _text.text = "0";
     }
 
     private void Update()
@@ -34,16 +34,14 @@ public class CoinsSpawner: MonoBehaviour
         {
             var lineId = Random.Range(0, _lineCount);
 
-            while (_wallsSpawner
-                .Walls.Peek().position.x == lineId)
-            {
-                lineId = Random.Range(0, _lineCount);
-            }
+            //while (_wallsSpawner.Walls.Peek().position.x == lineId)
+            //{
+            //    lineId = Random.Range(0, _lineCount);
+            //}
 
             Instantiate(_prefabCoin)
                 .GetComponent<Coin>()
-                .Initialize(_gameManager, lineId);
-            AddOne();
+                .Initialize(lineId);
 
             _timer = 0f;
         }
@@ -56,7 +54,7 @@ public class CoinsSpawner: MonoBehaviour
 
     public void AddOne()
     {
-        _numberOfCoinsInLevel++;
-        //_text.text = _numberOfCoinsInLevel.ToString();
+        _score++;
+        _text.text = _score.ToString();
     }
 }

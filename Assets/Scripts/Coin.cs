@@ -8,14 +8,13 @@ public class Coin : MonoBehaviour
     PlayerMove _playerMove;
     CoinsSpawner _coinsSpawner;
 
-    public void Initialize(GameManager gameManager, int lineId)
+    public void Initialize(int lineId)
     {
-        var playerTransform = gameManager.PlayerTransform;
         _playerTransform = GameManager.Instance.PlayerTransform;
         _playerMove = GameManager.Instance.PlayerMove;
         _coinsSpawner = GameManager.Instance.CoinsSpawner;
 
-        transform.position = new(playerTransform.position.x + 50, 1.2f, gameManager.LineManager.Lines[lineId]);
+        transform.position = new(_playerTransform.position.x + 50, 1.2f, GameManager.Instance.LineManager.Lines[lineId]);
     }
 
     void Update()
@@ -35,7 +34,7 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter()
     {
-        FindAnyObjectByType<CoinsSpawner>().AddOne();
+        _coinsSpawner.AddOne();
         Destroy(gameObject);
     }
 }

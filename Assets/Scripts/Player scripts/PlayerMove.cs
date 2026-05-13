@@ -13,8 +13,6 @@ public class PlayerMove : MonoBehaviour
 
     [SerializeField] float _speedForward;
     [SerializeField] float _maxSpeed;
-    [SerializeField] GameObject _road1;
-    [SerializeField] GameObject _road2;
     [SerializeField] GameObject _stepRayUpper;
     [SerializeField] GameObject _stepRayLower;
     [SerializeField] float _stepHeight;
@@ -27,8 +25,6 @@ public class PlayerMove : MonoBehaviour
 
     private void Start()
     {
-        if (_road1 == null) Debug.LogError("Road1 не назначен");
-        if (_road2 == null) Debug.LogError("Road2 не назначен");
         if (_stepRayUpper == null) Debug.LogError("StepRayUpper не назначен");
         if (_stepRayLower == null) Debug.LogError("StepRayLower не назначен");
 
@@ -43,15 +39,6 @@ public class PlayerMove : MonoBehaviour
     {
         Jump();
         MoveCharacter();
-        CheckRoads();
-    }
-
-    private void CheckRoads()
-    {
-        if (transform.position.x >= _road1.transform.position.x + 190)
-            _road1.transform.position = new Vector3(_road2.transform.position.x + 200, 0, 0);
-        if (transform.position.x >= _road2.transform.position.x + 190)
-            _road2.transform.position = new Vector3(_road1.transform.position.x + 200, 0, 0);
     }
 
     void Jump()

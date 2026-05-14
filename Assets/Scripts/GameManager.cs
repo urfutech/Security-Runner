@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 public class GameManager : MonoBehaviour
 {
@@ -58,8 +59,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         if (ScoreTextCurrent != null) ScoreTextCurrent.text = "Score: 0";
-        if (ScoreTextBest != null) ScoreTextBest.text = $"Score: {Progress.Instance.PlayerInfo.BestScore}";
-        if (ScoreTextBest != null) ScoreTextBest.text = $"Score: {Progress.Instance.PlayerInfo.BestScore}";
+        if (ScoreTextBest != null) ScoreTextBest.text = $"Score: {YG2.saves.BestScore}";
+        if (ScoreTextBest != null) ScoreTextBest.text = $"Score: {YG2.saves.BestScore}";
     }
 
     public void GameLose()

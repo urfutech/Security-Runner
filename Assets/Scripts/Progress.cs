@@ -1,31 +1,15 @@
 using System.Collections;
-using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using YG;
 
-[System.Serializable]
-public class PlayerInfo
-{
-    public int BestScore;
-    public int Coins;
-}
 
 public class Progress : MonoBehaviour
 {
     public static Progress Instance { get; private set; }
-    public PlayerInfo PlayerInfo;
-
-    [DllImport("__Internal")]
-    private static extern void SaveExtern(string data);
-
-    [DllImport("__Internal")]
-    private static extern void LoadExtern();
-
-    [DllImport("__Internal")]
-    private static extern string GetPlayerData();
 
     int _scoreCurrent;
     TextMeshProUGUI _textCountCoins;
@@ -40,18 +24,12 @@ public class Progress : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            PlayerInfo = new();
         }
         else
         {
             Destroy(gameObject);
             return;
         }
-
-        #if UNITY_WEBGL && !UNITY_EDITOR
-        GetPlayerData();
-        Load();
-        #endif
     }
 
     private void Start()
@@ -85,24 +63,20 @@ public class Progress : MonoBehaviour
 
     public void NewBestScore()
     {
-        if (PlayerInfo.BestScore < _scoreCurrent)
+        if (YG2.saves.BestScore < _scoreCurrent)
         {
-            PlayerInfo.BestScore = _scoreCurrent;
+            YG2.saves.BestScore = _scoreCurrent;
             _scoreTextBest.text = $"Best score: {_scoreCurrent}";
         }
 
-        #if UNITY_WEBGL && !UNITY_EDITOR
-        Save();
-        #endif
+        YG2.SaveProgress();
     }
-    public void AddCoin()
+    public void AddCoin()  // Если прыгнуть на монету, то метод вызовется больше 1 раза
     {
-        PlayerInfo.Coins++;
-        _textCountCoins.text = PlayerInfo.Coins.ToString();
+        YG2.saves.Coins++;
+        _textCountCoins.text = YG2.saves.Coins.ToString();
 
-        #if UNITY_WEBGL && !UNITY_EDITOR
-        Save();
-        #endif
+        YG2.SaveProgress();
     }
 
     public void SetPhoto(string url)
@@ -136,32 +110,13 @@ public class Progress : MonoBehaviour
             _scoreTextBest = GameManager.Instance.ScoreTextBest;
             _iconUser = GameManager.Instance.IconUser;
 
-            _iconUser.texture = _iconUser.texture;
-            _textCountCoins.text = PlayerInfo.Coins.ToString();
-            _scoreTextBest.text = $"Best score: {PlayerInfo.BestScore}";
-        }
-    }
+            _textCountCoins.text = YG2.saves.Coins.ToString();
+            _scoreTextBest.text = $"Best score: {YG2.saves.BestScore}";
 
-    public void Save()
-    {
-        string json = JsonUtility.ToJson(PlayerInfo);
-        SaveExtern(json);
-    }
-
-    public void Load()
-    {
-        LoadExtern();
-    }
-
-    public void SetPlayerInfo(string value)
-    {
-        if (!string.IsNullOrEmpty(value))
-        {
-            PlayerInfo = JsonUtility.FromJson<PlayerInfo>(value);
-        }
-        else
-        {
-            PlayerInfo = new PlayerInfo();
+            if (_photoTexture == null)
+                SetPhoto(YG2.player.photo);
+            else
+                _iconUser.texture = _photoTexture;
         }
     }
 }

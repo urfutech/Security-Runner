@@ -13,11 +13,6 @@ public class LoseMenu : MonoBehaviour
         _playerTransform = GameManager.Instance.PlayerTransform;
     }
 
-    public void RestartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
     private void Update()
     {
         if (gameObject.activeSelf)
@@ -25,4 +20,15 @@ public class LoseMenu : MonoBehaviour
             _score.text = $"Ваш счёт: {(int)_playerTransform.position.x}";
         }
     }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 }

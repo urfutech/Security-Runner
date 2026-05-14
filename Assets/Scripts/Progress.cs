@@ -18,22 +18,21 @@ public class Progress : MonoBehaviour
     public static Progress Instance { get; private set; }
     public PlayerInfo PlayerInfo;
 
-    //[DllImport("__Internal")]
-    //private static extern void SaveExtern(string data);
+    [DllImport("__Internal")]
+    private static extern void SaveExtern(string data);
 
-    //[DllImport("__Internal")]
-    //private static extern void LoadExtern();
+    [DllImport("__Internal")]
+    private static extern void LoadExtern();
 
-    #if UNITY_WEBGL && !UNITY_EDITOR
     [DllImport("__Internal")]
     private static extern string GetPlayerData();
-    #endif
 
     int _scoreCurrent;
     TextMeshProUGUI _textCountCoins;
     TextMeshProUGUI _scoreTextCurrent;
     TextMeshProUGUI _scoreTextBest;
     RawImage _iconUser;
+    Texture _photoTexture;
 
     private void Awake()
     {
@@ -42,7 +41,6 @@ public class Progress : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             PlayerInfo = new();
-            //LoadExtern();
         }
         else
         {
@@ -52,9 +50,8 @@ public class Progress : MonoBehaviour
 
         #if UNITY_WEBGL && !UNITY_EDITOR
         GetPlayerData();
-        #endif
-
         Load();
+        #endif
     }
 
     private void Start()
@@ -79,8 +76,11 @@ public class Progress : MonoBehaviour
 
     private void Update()
     {
-        _scoreCurrent = (int)GameManager.Instance.PlayerTransform.position.x;
-        _scoreTextCurrent.text = $"Score: {_scoreCurrent}";
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            _scoreCurrent = (int)GameManager.Instance.PlayerTransform.position.x;
+            _scoreTextCurrent.text = $"Score: {_scoreCurrent}";
+        }
     }
 
     public void NewBestScore()
@@ -90,13 +90,19 @@ public class Progress : MonoBehaviour
             PlayerInfo.BestScore = _scoreCurrent;
             _scoreTextBest.text = $"Best score: {_scoreCurrent}";
         }
+
+        #if UNITY_WEBGL && !UNITY_EDITOR
         Save();
+        #endif
     }
     public void AddCoin()
     {
         PlayerInfo.Coins++;
         _textCountCoins.text = PlayerInfo.Coins.ToString();
+
+        #if UNITY_WEBGL && !UNITY_EDITOR
         Save();
+        #endif
     }
 
     public void SetPhoto(string url)
@@ -114,31 +120,37 @@ public class Progress : MonoBehaviour
             request.result == UnityWebRequest.Result.ProtocolError)
             Debug.LogWarning(request.error);
         else
+        {
             _iconUser.texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
+            _photoTexture = _iconUser.texture;
+        }
     }
 
     private void InitializeReferences()
     {
-        _textCountCoins = GameManager.Instance.TextCountCoins;
-        _scoreCurrent = (int)GameManager.Instance.PlayerTransform.position.x;
-        _scoreTextCurrent = GameManager.Instance.ScoreTextCurrent;
-        _scoreTextBest = GameManager.Instance.ScoreTextBest;
-        _iconUser = GameManager.Instance.IconUser;
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            _textCountCoins = GameManager.Instance.TextCountCoins;
+            _scoreCurrent = (int)GameManager.Instance.PlayerTransform.position.x;
+            _scoreTextCurrent = GameManager.Instance.ScoreTextCurrent;
+            _scoreTextBest = GameManager.Instance.ScoreTextBest;
+            _iconUser = GameManager.Instance.IconUser;
 
-        _textCountCoins.text = PlayerInfo.Coins.ToString();
-        _scoreTextBest.text = $"Best score: {PlayerInfo.BestScore}";
+            _iconUser.texture = _iconUser.texture;
+            _textCountCoins.text = PlayerInfo.Coins.ToString();
+            _scoreTextBest.text = $"Best score: {PlayerInfo.BestScore}";
+        }
     }
 
     public void Save()
     {
         string json = JsonUtility.ToJson(PlayerInfo);
-        //SaveExtern(json);
-        Debug.Log("Saved: " + json);
+        SaveExtern(json);
     }
 
     public void Load()
     {
-        //LoadExtern();
+        LoadExtern();
     }
 
     public void SetPlayerInfo(string value)
@@ -146,12 +158,10 @@ public class Progress : MonoBehaviour
         if (!string.IsNullOrEmpty(value))
         {
             PlayerInfo = JsonUtility.FromJson<PlayerInfo>(value);
-            Debug.Log("Loaded: " + value);
         }
         else
         {
             PlayerInfo = new PlayerInfo();
-            Debug.Log("No save data, created new PlayerInfo");
         }
     }
 }

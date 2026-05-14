@@ -242,7 +242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c51b113adf2c58b29bcd1c378f61fcc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoinsSpawner
-  _text: {fileID: 524856938}
   _prefabCoin: {fileID: 6772868703268931261, guid: 0d06ed918520c40cd90605ea30a0044c, type: 3}
 --- !u!1 &101496246
 GameObject:
@@ -2537,7 +2536,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1586076776}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1289914354}
+        m_TargetAssemblyTypeName: LoseMenu, Assembly-CSharp
+        m_MethodName: GoToMainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1586076776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2742,11 +2753,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d769a76a899d44db5aa0c9b212fa0f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  _textCountCoins: {fileID: 524856938}
   _scoreTextLoseMenu: {fileID: 1915587979}
   _scoreTextCurrent: {fileID: 207147543}
   _scoreTextBest: {fileID: 773190232}
   _canvasLose: {fileID: 1289914349}
-  _iconUser: {fileID: 0}
+  _iconUser: {fileID: 1964602099}
   _playerTransform: {fileID: 1104096039}
   _playerMove: {fileID: 1104096040}
   _lineManager: {fileID: 1510786865}

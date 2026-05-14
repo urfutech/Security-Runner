@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
         _currentLineId = currentLineId;
         _lineManager = GameManager.Instance.LineManager;
         _playerTransform = GameManager.Instance.PlayerTransform;
-        _speed = GameManager.Instance.PlayerMove.GetSpeed;
+        _speed = GameManager.Instance.PlayerMove.Speed;
         // _needBoost = true;
         _playerMove = GameManager.Instance.PlayerMove;
         transform.SetPositionAndRotation(
@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
         // }
 
         if (_playerTransform.position.x > transform.position.x - 3)
-            _speed = _playerMove.GetSpeed;
+            _speed = _playerMove.Speed;
 
         transform.position += _speed * Time.deltaTime * transform.forward;
 

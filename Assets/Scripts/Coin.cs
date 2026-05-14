@@ -19,7 +19,7 @@ public class Coin : MonoBehaviour
     {
         var rotationSpeed = _rotationMultiPlayer 
             * Time.deltaTime
-            * _playerMove.GetSpeed;
+            * _playerMove.Speed;
 
         transform.Rotate(0, rotationSpeed, 0);
 

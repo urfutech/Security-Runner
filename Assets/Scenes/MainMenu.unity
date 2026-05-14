@@ -652,12 +652,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 638591310}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e933ac4fb67357478f84f6285f2bd95, type: 3}
+  m_Script: {fileID: 11500000, guid: 3890fb524f685374a8739dedc76db6ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Progress
-  PlayerInfo:
-    BestScore: 0
-    Coins: 0
 --- !u!4 &638591312
 Transform:
   m_ObjectHideFlags: 0
@@ -699,7 +696,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1523867830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce97a2cc769721047aa894af73cb1c67, type: 3}
+  m_Script: {fileID: 11500000, guid: 27f39a75464c0f34793e6cd309caaa6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
 --- !u!4 &1523867832

@@ -39,7 +39,7 @@ public class WallsSpawner : MonoBehaviour
     {
         _timer += Time.deltaTime;
         var timer = _timer 
-            * _playerMove.GetSpeed
+            * _playerMove.Speed
             * ImportantTimerCoef;
 
         var randomPlacemnetCoef = Random.Range(

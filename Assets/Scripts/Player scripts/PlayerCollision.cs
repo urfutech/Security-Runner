@@ -20,7 +20,7 @@ public class PlayerCollision : MonoBehaviour
         }
         else if (hit.gameObject.CompareTag("Side Wall"))
         {
-            _playerMove.ChangeSpeed(-_playerMove.GetSpeed / 3);
+            _playerMove.ChangeSpeed(-_playerMove.Speed / 3);
         }
         else if (hit.gameObject.CompareTag("Wall"))
         {

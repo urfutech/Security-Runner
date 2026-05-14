@@ -13,10 +13,6 @@ public class PlayerMove : MonoBehaviour
 
     [SerializeField] float _speedForward;
     [SerializeField] float _maxSpeed;
-    [SerializeField] GameObject _stepRayUpper;
-    [SerializeField] GameObject _stepRayLower;
-    [SerializeField] float _stepHeight;
-    [SerializeField] float _stepSmpoth;
 
     bool _isChangeLine;
     CharacterController _charController;
@@ -25,9 +21,6 @@ public class PlayerMove : MonoBehaviour
 
     private void Start()
     {
-        if (_stepRayUpper == null) Debug.LogError("StepRayUpper не назначен");
-        if (_stepRayLower == null) Debug.LogError("StepRayLower не назначен");
-
         _lineManager = GameManager.Instance.LineManager;
         _speedForward = _speedForward < StartSpeed ? StartSpeed : _speedForward;
         CurrentLineId = _lineManager.DefaultLineId;
@@ -54,25 +47,29 @@ public class PlayerMove : MonoBehaviour
 
     void MoveCharacter()
     {
-        _speedForward += 
-            SpeedForwardChange
-            * Time.deltaTime;
-        if (_speedForward > _maxSpeed) _speedForward = _maxSpeed;
+        _speedForward += SpeedForwardChange * Time.deltaTime;
+
+        if (_speedForward > _maxSpeed) 
+            _speedForward = _maxSpeed;
+
         var nextPos = _speedForward * Time.deltaTime * transform.forward;
         nextPos.y = _verticalSpeed * Time.deltaTime;
+
         _charController.Move(nextPos);
         CheckDirection();
     }
 
     private void CheckDirection()
     {
-         if (Input.GetKeyDown(KeyCode.D) && CurrentLineId > 0)
+        if (Input.GetKeyDown(KeyCode.D) && CurrentLineId > 0)
         {
+            print("D");
             CurrentLineId--;
             _isChangeLine = true;
         }
         if (Input.GetKeyDown(KeyCode.A) && CurrentLineId < _lineManager.Lines.Count - 1)
         {
+            print("A");
             CurrentLineId++;
             _isChangeLine = true;
         }
@@ -103,17 +100,15 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    public void ChangeSpeed(float speed)
-    { 
+    public void ChangeSpeed(float speed) =>
         _speedForward = _speedForward + speed < StartSpeed ? StartSpeed : _speedForward + speed; 
-    }
 
     bool CheckGround() => Physics.Raycast(transform.position, Vector3.down, 0.05f);
 
-    public float GetSpeed => _speedForward;
+    public float Speed => _speedForward;
 
-    public float GetMaxSpeed => _maxSpeed;
+    public float MaxSpeed => _maxSpeed;
 
-    public float GetSpawnTiming => 
+    public float SpawnTiming => 
         _speedForward * 0.1f;
 }

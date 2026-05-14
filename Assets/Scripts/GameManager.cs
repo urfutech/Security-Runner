@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         if (ScoreTextCurrent != null) ScoreTextCurrent.text = "Score: 0";
-        if (ScoreTextBest != null) ScoreTextBest.text = $"Score: {YG2.saves.BestScore}";
+        if (ScoreTextBest != null) ScoreTextBest.text = $"Best score: {YG2.saves.BestScore}";
         if (TextCountCoins != null) TextCountCoins.text = YG2.saves.Coins.ToString();
     }
 

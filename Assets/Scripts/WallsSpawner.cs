@@ -48,8 +48,7 @@ public class WallsSpawner : MonoBehaviour
             * randomDensity * randomPlacemnetCoef)
         {
             var lineId = Random.Range(0, _linesCount);
-            var newWall = Instantiate(_prefabWall)
-                .GetComponent<Wall>();
+            var newWall = Instantiate(_prefabWall).GetComponent<Wall>();
 
             newWall.Initialize(Walls);
             newWall.transform.position = new(

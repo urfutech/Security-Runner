@@ -26,7 +26,7 @@ public class PlayerCollision : MonoBehaviour
         {
             GameManager.Instance.GameLose();
         }
-        else if (hit.gameObject.CompareTag("Coin"))
+        else if (hit.gameObject.CompareTag("Coin"))  // При падении на монету, вызывается много раз
         {
             hit.gameObject.GetComponent<Coin>().Die();
             _progress.AddCoin();

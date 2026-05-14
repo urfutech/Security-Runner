@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Wall
+  - Side Wall
+  - Coin
   layers:
   - Default
   - TransparentFX

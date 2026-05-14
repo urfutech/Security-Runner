@@ -4,19 +4,31 @@ using UnityEngine.SceneManagement;
 
 public class LoseMenu : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI _score;
-    [SerializeField] Transform _player;
+    TextMeshProUGUI _score;
+    Transform _playerTransform;
 
-    public void RestartLevel()
+    private void Start()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        _score = GameManager.Instance.ScoreTextLoseMenu;
+        _playerTransform = GameManager.Instance.PlayerTransform;
     }
 
     private void Update()
     {
         if (gameObject.activeSelf)
         {
-            _score.text = $"Ваш счёт: {(int)_player.position.x}";
+            _score.text = $"Ваш счёт: {(int)_playerTransform.position.x}";
         }
     }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 }

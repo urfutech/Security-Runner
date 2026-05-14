@@ -4,30 +4,41 @@ public class SpawnEnemy : MonoBehaviour
 {
     public int EnemyCount { get; private set; }
 
-    [SerializeField] LineManager _lineManager;
+    [Header("Настройка врага")]
     [SerializeField] GameObject _prefabEnemy;
-    [SerializeField] Transform _playerTransform;
-    [SerializeField] PlayerMove _playerMove;
     [SerializeField] int _maxEnemy;
     [SerializeField] float _spawnTime;
     // Во сколько раз больше будет изначальная скорость по сравнению с игроком
     [SerializeField] float _multiplierSpeed;
 
+    Transform _playerTransform;
+    PlayerMove _playerMove;
     float _timer;
+    int _maxEnemies = 1;  // TEMP
+    int _linesCount;
+
+    private void Start()
+    {
+        if (_prefabEnemy == null) Debug.LogError("Префаб врага не найден");
+
+        _playerTransform = GameManager.Instance.PlayerTransform;
+        _playerMove = GameManager.Instance.PlayerMove;
+        _linesCount = GameManager.Instance.LineManager.Lines.Count;
+    }
 
     private void Update()
     {
         _timer += Time.deltaTime;
 
-        if (_timer > _spawnTime && EnemyCount < _maxEnemy)
+        if (_timer > _spawnTime && EnemyCount < _maxEnemies)  // _maxEnemies -> _maxEnemy
         {
-            var lineId = Random.Range(0, _lineManager.Lines.Count);
+            var lineId = Random.Range(0, _linesCount);
             if (lineId == _playerMove.CurrentLineId)
-                lineId = (lineId + 1) % _lineManager.Lines.Count;
+                lineId = (lineId + 1) % _linesCount;
 
             Instantiate(_prefabEnemy)
                 .GetComponent<Enemy>()
-                .Initialize(_lineManager, lineId, _playerTransform, _playerMove, _multiplierSpeed);
+                .Initialize(lineId, _multiplierSpeed);
 
             EnemyCount++;
             _timer = 0f;

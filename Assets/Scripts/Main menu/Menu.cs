@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class Menu : MonoBehaviour
 {
+    [SerializeField] GameObject _shop;
+
     public void StartGame()
     {
         SceneManager.LoadScene(1);
@@ -10,6 +12,7 @@ public class MainMenu : MonoBehaviour
 
     public void OpenShop()
     {
-
+        _shop.SetActive(true);
+        gameObject.SetActive(false);
     }
 }

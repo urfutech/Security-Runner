@@ -63,13 +63,11 @@ public class PlayerMove : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.D) && CurrentLineId > 0)
         {
-            print("D");
             CurrentLineId--;
             _isChangeLine = true;
         }
         if (Input.GetKeyDown(KeyCode.A) && CurrentLineId < _lineManager.Lines.Count - 1)
         {
-            print("A");
             CurrentLineId++;
             _isChangeLine = true;
         }

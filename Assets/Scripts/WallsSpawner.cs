@@ -16,7 +16,6 @@ public class WallsSpawner : MonoBehaviour
     Transform _playerTransform;
     PlayerMove _playerMove;
     LineManager _lineManager;
-    //если удалить инициализацию, то будет кошмар
     private float randomDensity = 1;    
     private float wallsRow;
     private float wallsPlaced;
@@ -49,8 +48,7 @@ public class WallsSpawner : MonoBehaviour
             * randomDensity * randomPlacemnetCoef)
         {
             var lineId = Random.Range(0, _linesCount);
-            var newWall = Instantiate(_prefabWall)
-                .GetComponent<Wall>();
+            var newWall = Instantiate(_prefabWall).GetComponent<Wall>();
 
             newWall.Initialize(Walls);
             newWall.transform.position = new(

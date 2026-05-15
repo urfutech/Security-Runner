@@ -71,7 +71,7 @@ public class Progress : MonoBehaviour
 
         YG2.SaveProgress();
     }
-    public void AddCoin()  // Если прыгнуть на монету, то метод вызовется больше 1 раза
+    public void AddCoin()
     {
         YG2.saves.Coins++;
         _textCountCoins.text = YG2.saves.Coins.ToString();

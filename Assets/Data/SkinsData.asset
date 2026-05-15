@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc1d5ec4198d7c643ab224f4eb76aa65, type: 3}
+  m_Name: SkinsData
+  m_EditorClassIdentifier: Assembly-CSharp::SkinsData
+  skins:
+  - Id: 0
+    IsUnlocked: 1
+    Cost: 49
+    Skin: {fileID: 6087800929167571106, guid: 0587b055dc7654343a8400b22f1af81a, type: 3}
+  - Id: 1
+    IsUnlocked: 1
+    Cost: 51
+    Skin: {fileID: 3473861123775290761, guid: ce24b4e08eb1cea499dad62575904813, type: 3}

@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Managers")]
     [SerializeField] LineManager _lineManager;
+    [SerializeField] SkinManager _skinManager;
 
     [Header("Spawners")]
     [SerializeField] SpawnEnemy _enemySpawner;
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
     public Transform PlayerTransform => _playerTransform;
     public PlayerMove PlayerMove => _playerMove;
     public LineManager LineManager => _lineManager;
+    public SkinManager SkinManager => _skinManager;
     public SpawnEnemy EnemySpawner => _enemySpawner;
     public WallsSpawner WallsSpawner => _wallsSpawner;
     public CoinsSpawner CoinsSpawner => _coinsSpawner;
@@ -59,7 +61,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         if (ScoreTextCurrent != null) ScoreTextCurrent.text = "Score: 0";
-        if (ScoreTextBest != null) ScoreTextBest.text = $"Score: {YG2.saves.BestScore}";
+        if (ScoreTextBest != null) ScoreTextBest.text = $"Best score: {YG2.saves.BestScore}";
         if (TextCountCoins != null) TextCountCoins.text = YG2.saves.Coins.ToString();
     }
 

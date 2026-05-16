@@ -7,11 +7,14 @@
         false,
         false
     ],
-    "idSave": 159,
+    "idSave": 412,
     "BestScore": 286,
-    "Coins": 2,
-    "SkinId": 0,
+    "Coins": 30,
+    "SkinId": 2,
     "IdUnlockedSkins": [
-        1
+        1,
+        1,
+        1,
+        2
     ]
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -10,9 +9,14 @@ public class Shop : MonoBehaviour
     [SerializeField] SkinsData _skinsData;
     [SerializeField] TextMeshProUGUI _textCoins;
     [SerializeField] GameObject _frame;
+    [SerializeField] GameObject[] _buttons;
 
     private void Start()
     {
+        _frame.transform.SetParent(_buttons[YG2.saves.SkinId].transform);
+        _frame.transform.SetAsFirstSibling();
+        _frame.transform.localPosition = Vector3.zero;
+
         _textCoins.text = $"Coins: {YG2.saves.Coins}";
     }
 
@@ -22,7 +26,7 @@ public class Shop : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void SetSkin(int skinId)
+    public void SetSkin(int skinId, GameObject button)
     {
         if (skinId == YG2.saves.SkinId) return;
 
@@ -38,18 +42,19 @@ public class Shop : MonoBehaviour
         {
             YG2.saves.SkinId = skinId;
 
-            _frame.transform.SetParent(gameObject.transform);
-            _frame.transform.position = Vector3.zero;
+            _frame.transform.SetParent(button.transform);
+            _frame.transform.SetAsFirstSibling();
+            _frame.transform.localPosition = Vector3.zero;
         }
         else
         {
-            BuySkin(skin);
+            BuySkin(skin, button);
         }
 
         YG2.SaveProgress();
     }
 
-    public void BuySkin(SkinInfo skin)
+    public void BuySkin(SkinInfo skin, GameObject button)
     {
         if (YG2.saves.Coins >= skin.Cost)
         {
@@ -59,8 +64,9 @@ public class Shop : MonoBehaviour
             skin.IsUnlocked = true;
             _textCoins.text = $"Coins: {YG2.saves.Coins}";
 
-            _frame.transform.SetParent(gameObject.transform);
-            _frame.transform.position = Vector3.zero;
+            _frame.transform.SetParent(button.transform);
+            _frame.transform.SetAsFirstSibling();
+            _frame.transform.localPosition = Vector3.zero;
         }
     }
 }

@@ -50,7 +50,6 @@ public class Enemy : MonoBehaviour
                 if (hit.collider.gameObject.CompareTag("Wall"))
                     ChangeDirection();
         }
-        if (isChangeLine) MoveDirection();
 
         if (_playerTransform.position.x > transform.position.x - 3)
             _speed = _playerMove.Speed;
@@ -81,34 +80,9 @@ public class Enemy : MonoBehaviour
             transform.forward);
     }
 
-    private void MoveDirection()
-    {
-        var targetPosition = new Vector3(transform.position.x, transform.position.y, _lineManager.Lines[CurrentLineId]);
-        var directionToTarget = targetPosition - transform.position;
-
-        if (directionToTarget.magnitude < 0.01f)
-        {
-            transform.position = targetPosition;
-            _isChangeLine = false;
-        }
-        else
-        {
-            var moveStep = SpeedChangeLine * Time.deltaTime * directionToTarget.normalized;
-
-            if (moveStep.magnitude > directionToTarget.magnitude)
-                moveStep = directionToTarget;
-
-            _charController.Move(moveStep);
-        }
-    }
-
     public void Die()
     {
         Destroy(gameObject);
     }
-
-        public void ChangeSpeed(float speed) =>
-        _speedForward = _speedForward + speed < StartSpeed 
-        ? StartSpeed : _speedForward + speed; 
 
 }

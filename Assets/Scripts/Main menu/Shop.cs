@@ -1,4 +1,5 @@
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using YG;
 
@@ -6,6 +7,12 @@ public class Shop : MonoBehaviour
 {
     [SerializeField] GameObject _menu;
     [SerializeField] SkinsData _skinsData;
+    [SerializeField] TextMeshProUGUI _textCoins;
+
+    private void Start()
+    {
+        _textCoins.text = $"Coins: {YG2.saves.Coins}";
+    }
 
     public void BackToMenu()
     {
@@ -39,6 +46,7 @@ public class Shop : MonoBehaviour
             YG2.saves.SkinId = skin.Id;
             YG2.saves.IdUnlockedSkins.Add(skin.Id);
             skin.IsUnlocked = true;
+            _textCoins.text = $"Coins: {YG2.saves.Coins}";
         }
     }
 }

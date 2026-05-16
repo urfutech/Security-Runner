@@ -17,7 +17,7 @@ public class Shop : MonoBehaviour
         _frame.transform.SetAsFirstSibling();
         _frame.transform.localPosition = Vector3.zero;
 
-        _textCoins.text = $"Coins: {YG2.saves.Coins}";
+        _textCoins.text = YG2.saves.Coins.ToString();
     }
 
     public void BackToMenu()
@@ -62,7 +62,7 @@ public class Shop : MonoBehaviour
             YG2.saves.SkinId = skin.Id;
             YG2.saves.IdUnlockedSkins.Add(skin.Id);
             skin.IsUnlocked = true;
-            _textCoins.text = $"Coins: {YG2.saves.Coins}";
+            _textCoins.text = YG2.saves.Coins.ToString();
 
             _frame.transform.SetParent(button.transform);
             _frame.transform.SetAsFirstSibling();

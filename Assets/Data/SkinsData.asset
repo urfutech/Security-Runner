@@ -18,10 +18,14 @@ MonoBehaviour:
     Cost: 50
     Skin: {fileID: 6087800929167571106, guid: 0587b055dc7654343a8400b22f1af81a, type: 3}
   - Id: 1
-    IsUnlocked: 0
+    IsUnlocked: 1
     Cost: 5
     Skin: {fileID: 3473861123775290761, guid: ce24b4e08eb1cea499dad62575904813, type: 3}
   - Id: 2
-    IsUnlocked: 0
+    IsUnlocked: 1
     Cost: 5
     Skin: {fileID: 6173091182417045106, guid: 12a7e6b316097dc448d2f88edc4d0f6b, type: 3}
+  - Id: 3
+    IsUnlocked: 1
+    Cost: 5
+    Skin: {fileID: 6629026571207923136, guid: 90f205f9b949202408cf35a3eee6ac52, type: 3}

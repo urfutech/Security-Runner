@@ -67,6 +67,8 @@ public class Progress : MonoBehaviour
         {
             YG2.saves.BestScore = _scoreCurrent;
             _scoreTextBest.text = $"Best score: {_scoreCurrent}";
+
+            YG2.SetLeaderboard("bestDistance", _scoreCurrent);
         }
 
         YG2.SaveProgress();

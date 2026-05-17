@@ -44,6 +44,7 @@ public class Shop : MonoBehaviour
 
     public void BackToMenu()
     {
+        YG2.InterstitialAdvShow();
         _menu.SetActive(true);
         gameObject.SetActive(false);
     }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using YG;
 
 public class Leaderboard : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class Leaderboard : MonoBehaviour
 
     public void BackToMenu()
     {
+        YG2.InterstitialAdvShow();
         _menu.SetActive(true);
         gameObject.SetActive(false);
     }

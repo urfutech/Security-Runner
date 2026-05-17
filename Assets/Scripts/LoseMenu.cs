@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using YG;
 
 public class LoseMenu : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class LoseMenu : MonoBehaviour
 
     public void RestartLevel()
     {
+        YG2.InterstitialAdvShow();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

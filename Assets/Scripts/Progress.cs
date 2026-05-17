@@ -70,7 +70,7 @@ public class Progress : MonoBehaviour
 
             YG2.SetLeaderboard("bestDistance", _scoreCurrent);
 
-            if (YG2.reviewCanShow)
+            if (!YG2.reviewCanShow)
                 YG2.ReviewShow();
         }
 

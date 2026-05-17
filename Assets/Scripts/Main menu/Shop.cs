@@ -1,6 +1,7 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using YG;
 
 public class Shop : MonoBehaviour
@@ -8,14 +9,18 @@ public class Shop : MonoBehaviour
     [SerializeField] GameObject _menu;
     [SerializeField] SkinsData _skinsData;
     [SerializeField] TextMeshProUGUI _textCoins;
-    [SerializeField] GameObject _frame;
-    [SerializeField] GameObject[] _buttons;
+    [SerializeField] Button[] _buttons;
+
+    ColorBlock _colorBlock;
+    ColorBlock _defaultColorBlock;
 
     private void Start()
     {
-        _frame.transform.SetParent(_buttons[YG2.saves.SkinId].transform);
-        _frame.transform.SetAsFirstSibling();
-        _frame.transform.localPosition = Vector3.zero;
+        _defaultColorBlock = _buttons[0].colors;
+        _colorBlock = _buttons[0].colors;
+        _colorBlock.normalColor = new(160f / 255f, 229f / 255f, 44f / 255f);
+
+        _buttons[YG2.saves.SkinId].colors = _colorBlock;
 
         _textCoins.text = YG2.saves.Coins.ToString();
     }
@@ -26,7 +31,7 @@ public class Shop : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void SetSkin(int skinId, GameObject button)
+    public void SetSkin(int skinId, Button button)
     {
         if (skinId == YG2.saves.SkinId) return;
 
@@ -40,11 +45,11 @@ public class Shop : MonoBehaviour
 
         if (skin.IsUnlocked)
         {
+            _buttons[YG2.saves.SkinId].colors = _defaultColorBlock;
+
             YG2.saves.SkinId = skinId;
 
-            _frame.transform.SetParent(button.transform);
-            _frame.transform.SetAsFirstSibling();
-            _frame.transform.localPosition = Vector3.zero;
+            button.colors = _colorBlock;
         }
         else
         {
@@ -54,19 +59,18 @@ public class Shop : MonoBehaviour
         YG2.SaveProgress();
     }
 
-    public void BuySkin(SkinInfo skin, GameObject button)
+    public void BuySkin(SkinInfo skin, Button button)
     {
         if (YG2.saves.Coins >= skin.Cost)
         {
+            _buttons[YG2.saves.SkinId].colors = _defaultColorBlock;
+            button.colors = _colorBlock;
+
             YG2.saves.Coins -= skin.Cost;
             YG2.saves.SkinId = skin.Id;
             YG2.saves.IdUnlockedSkins.Add(skin.Id);
             skin.IsUnlocked = true;
             _textCoins.text = YG2.saves.Coins.ToString();
-
-            _frame.transform.SetParent(button.transform);
-            _frame.transform.SetAsFirstSibling();
-            _frame.transform.localPosition = Vector3.zero;
         }
     }
 }

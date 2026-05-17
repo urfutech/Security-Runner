@@ -1,6 +1,7 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(Button))]
 public class SkinButton : MonoBehaviour
 {
     [SerializeField] Shop _shop;
@@ -8,6 +9,6 @@ public class SkinButton : MonoBehaviour
 
     public void OnButtonClick()
     {
-        _shop.SetSkin(_skinId, gameObject);
+        _shop.SetSkin(_skinId, GetComponent<Button>());
     }
 }

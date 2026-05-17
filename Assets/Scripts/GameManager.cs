@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _scoreTextBest;
     [SerializeField] GameObject _canvasLose;
     [SerializeField] RawImage _iconUser;
+    [SerializeField] GameObject _review;
 
     [Header("Player")]
     [SerializeField] Transform _playerTransform;
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI ScoreTextCurrent => _scoreTextCurrent;
     public TextMeshProUGUI ScoreTextBest => _scoreTextBest;
     public GameObject CanvasLose => _canvasLose;
+    public GameObject Review => _review;
     public RawImage IconUser => _iconUser;
     public Transform PlayerTransform => _playerTransform;
     public PlayerMove PlayerMove => _playerMove;
@@ -63,6 +65,7 @@ public class GameManager : MonoBehaviour
         if (ScoreTextCurrent != null) ScoreTextCurrent.text = "Score: 0";
         if (ScoreTextBest != null) ScoreTextBest.text = $"Best score: {YG2.saves.BestScore}";
         if (TextCountCoins != null) TextCountCoins.text = YG2.saves.Coins.ToString();
+        if (Review != null && YG2.reviewCanShow) Review.SetActive(false);
     }
 
     public void GameLose()
@@ -91,5 +94,6 @@ public class GameManager : MonoBehaviour
         if (EnemySpawner == null) Debug.LogError("EnemySpawner не назначен");
         if (WallsSpawner == null) Debug.LogError("WallsSpawner не назначен");
         if (CoinsSpawner == null) Debug.LogError("CoinsSpawner не назначен");
+        if (Review == null) Debug.LogError("Review не назначен");
     }
 }

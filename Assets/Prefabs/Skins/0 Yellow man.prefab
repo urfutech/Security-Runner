@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2053931097618452201}
   m_Layer: 0
-  m_Name: 1 Yellow man
+  m_Name: 0 Yellow man
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

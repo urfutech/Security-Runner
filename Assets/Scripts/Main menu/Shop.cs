@@ -4,16 +4,25 @@ using UnityEngine;
 using UnityEngine.UI;
 using YG;
 
+[RequireComponent(typeof(Camera))]
 public class Shop : MonoBehaviour
 {
     [SerializeField] GameObject _menu;
     [SerializeField] SkinsData _skinsData;
     [SerializeField] TextMeshProUGUI _textCoins;
     [SerializeField] Button[] _buttons;
+    [SerializeField] Vector2 _spriteSize = new(60, 60);
 
     ColorBlock _colorBlock;
     ColorBlock _defaultColorBlock;
     ColorBlock _lockedColorBlock;
+    Camera _renderCamera;
+
+    void Awake()
+    {
+        _renderCamera = GetComponent<Camera>();
+        _renderCamera.enabled = false;
+    }
 
     private void Start()
     {
@@ -36,6 +45,7 @@ public class Shop : MonoBehaviour
             var skinData = _skinsData.skins[i];
 
             button.transform.Find("Cost").GetComponentInChildren<TextMeshProUGUI>().text = skinData.Cost.ToString();
+            button.transform.Find("Preview").GetComponentInChildren<Image>().sprite = CreateSpriteFromPrefab(skinData.Skin);
 
             if (!skinData.IsUnlocked)
                 button.colors = _lockedColorBlock;
@@ -93,6 +103,53 @@ public class Shop : MonoBehaviour
         else
         {
 
+        }
+    }
+
+    public Sprite CreateSpriteFromPrefab(GameObject prefab)
+    {
+        var renderContainer = new GameObject("TempRenderContainer");
+        var tempLayer = LayerMask.NameToLayer("TempRender");
+        var tempObj = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+        var cameraObj = new GameObject("TempRenderCamera");
+        var tempCamera = cameraObj.AddComponent<Camera>();
+        var renderTexture = new RenderTexture((int)_spriteSize.x, (int)_spriteSize.y, 24, RenderTextureFormat.ARGB32);
+        var texture = new Texture2D((int)_spriteSize.x, (int)_spriteSize.y, TextureFormat.RGBA32, false);
+
+        renderContainer.transform.SetParent(null);
+        tempObj.transform.SetParent(renderContainer.transform);
+        SetLayerRecursively(tempObj, tempLayer);
+
+        tempCamera.CopyFrom(_renderCamera);
+        tempCamera.clearFlags = CameraClearFlags.SolidColor;
+        tempCamera.backgroundColor = Color.clear;
+        tempCamera.cullingMask = 1 << tempLayer;
+        tempCamera.transform.position = tempObj.transform.position + new Vector3(0, 1.5f, 2f);
+        tempCamera.transform.LookAt(tempObj.transform.position + Vector3.up * 1.25f);
+        tempCamera.targetTexture = renderTexture;
+        tempCamera.Render();
+
+        RenderTexture.active = renderTexture;
+        texture.ReadPixels(new Rect(0, 0, _spriteSize.x, _spriteSize.y), 0, 0);
+        texture.Apply();
+
+        var sprite = Sprite.Create(texture, new Rect(0, 0, _spriteSize.x, _spriteSize.y), Vector2.one * 0.5f);
+
+        tempCamera.targetTexture = null;
+        RenderTexture.active = null;
+        DestroyImmediate(renderTexture);
+        DestroyImmediate(cameraObj);
+        DestroyImmediate(renderContainer);
+
+        return sprite;
+    }
+
+    private void SetLayerRecursively(GameObject obj, int layer)
+    {
+        obj.layer = layer;
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, layer);
         }
     }
 }

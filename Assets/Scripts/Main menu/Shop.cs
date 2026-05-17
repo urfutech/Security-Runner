@@ -13,16 +13,33 @@ public class Shop : MonoBehaviour
 
     ColorBlock _colorBlock;
     ColorBlock _defaultColorBlock;
+    ColorBlock _lockedColorBlock;
 
     private void Start()
     {
         _defaultColorBlock = _buttons[0].colors;
+        _lockedColorBlock = _buttons[0].colors;
         _colorBlock = _buttons[0].colors;
+
+        _lockedColorBlock.normalColor = new(180f / 255f, 180f / 255f, 180f / 255f);
+        _lockedColorBlock.selectedColor = new(180f / 255f, 180f / 255f, 180f / 255f);
+        _lockedColorBlock.pressedColor = new(180f / 255f, 180f / 255f, 180f / 255f);
         _colorBlock.normalColor = new(160f / 255f, 229f / 255f, 44f / 255f);
 
         _buttons[YG2.saves.SkinId].colors = _colorBlock;
 
         _textCoins.text = YG2.saves.Coins.ToString();
+
+        for (int i = 0; i < _buttons.Length; i++)
+        {
+            var button = _buttons[i];
+            var skinData = _skinsData.skins[i];
+
+            button.transform.Find("Cost").GetComponentInChildren<TextMeshProUGUI>().text = skinData.Cost.ToString();
+
+            if (!skinData.IsUnlocked)
+                button.colors = _lockedColorBlock;
+        }
     }
 
     public void BackToMenu()
@@ -71,6 +88,10 @@ public class Shop : MonoBehaviour
             YG2.saves.IdUnlockedSkins.Add(skin.Id);
             skin.IsUnlocked = true;
             _textCoins.text = YG2.saves.Coins.ToString();
+        }
+        else
+        {
+
         }
     }
 }

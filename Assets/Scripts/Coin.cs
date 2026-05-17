@@ -1,8 +1,11 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class Coin : MonoBehaviour
 {
     const float _rotationMultiPlayer = 15;
+
+    public bool IsCollected { get; private set; }
 
     Transform _playerTransform;
     PlayerMove _playerMove;
@@ -29,8 +32,12 @@ public class Coin : MonoBehaviour
         }
     }
 
-    public void Die()
+    public void Collect()
     {
+        if (IsCollected) return;
+
+        GetComponent<Collider>().enabled = false;
+        IsCollected = true;
         Destroy(gameObject);
     }
 }

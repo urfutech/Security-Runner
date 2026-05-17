@@ -28,6 +28,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] SpawnEnemy _enemySpawner;
     [SerializeField] WallsSpawner _wallsSpawner;
     [SerializeField] CoinsSpawner _coinsSpawner;
+    [SerializeField] BoostsSpawner _boostsSpawner;
+
+    [Header("Unity editor")]
+    [SerializeField] GameObject _createBoost;
 
     public TextMeshProUGUI TextCountCoins => _textCountCoins;
     public TextMeshProUGUI ScoreTextLoseMenu => _scoreTextLoseMenu;
@@ -43,6 +47,7 @@ public class GameManager : MonoBehaviour
     public SpawnEnemy EnemySpawner => _enemySpawner;
     public WallsSpawner WallsSpawner => _wallsSpawner;
     public CoinsSpawner CoinsSpawner => _coinsSpawner;
+    public BoostsSpawner BoostsSpawner => _boostsSpawner;
 
 
     void Awake()
@@ -66,6 +71,10 @@ public class GameManager : MonoBehaviour
         if (ScoreTextBest != null) ScoreTextBest.text = $"Best score: {YG2.saves.BestScore}";
         if (TextCountCoins != null) TextCountCoins.text = YG2.saves.Coins.ToString();
         if (Review != null && YG2.reviewCanShow) Review.SetActive(false);
+
+        #if !UNITY_EDITOR
+        _createBoost.SetActive(false);
+        #endif
     }
 
     public void GameLose()
@@ -95,5 +104,6 @@ public class GameManager : MonoBehaviour
         if (WallsSpawner == null) Debug.LogError("WallsSpawner не назначен");
         if (CoinsSpawner == null) Debug.LogError("CoinsSpawner не назначен");
         if (Review == null) Debug.LogError("Review не назначен");
+        if (BoostsSpawner == null) Debug.LogError("BoostsSpawner не назначен");
     }
 }

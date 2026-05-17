@@ -4,12 +4,12 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     const float GravityForce = 67;
-    const float SpeedForwardChange = 0.01f;
-    const float JumpForce = 22;
+    const float SpeedForwardChange = 0.1f;
     const float SpeedChangeLine = 25;
     const float StartSpeed = 10;
 
     public int CurrentLineId { get; private set; }
+    public float JumpForce { get; private set; } = 20;
 
     [SerializeField] float _speedForward;
     [SerializeField] float _maxSpeed;
@@ -103,10 +103,9 @@ public class PlayerMove : MonoBehaviour
 
     bool CheckGround() => Physics.Raycast(transform.position, Vector3.down, 0.05f);
 
+    public float SetJumpForce(float value) => JumpForce = value;
+
     public float Speed => _speedForward;
 
     public float MaxSpeed => _maxSpeed;
-
-    public float SpawnTiming => 
-        _speedForward * 0.1f;
 }

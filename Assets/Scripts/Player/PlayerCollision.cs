@@ -14,6 +14,7 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
+
         if (hit.gameObject.CompareTag("Enemy"))
         {
             hit.gameObject.GetComponent<Enemy>().Die();
@@ -26,10 +27,14 @@ public class PlayerCollision : MonoBehaviour
         {
             GameManager.Instance.GameLose();
         }
-        else if (hit.gameObject.CompareTag("Coin"))  // При падении на монету, вызывается много раз
+        else if (hit.gameObject.CompareTag("Coin"))
         {
-            hit.gameObject.GetComponent<Coin>().Die();
+            hit.gameObject.GetComponent<Coin>().Collect();
             _progress.AddCoin();
+        }
+        else if (hit.gameObject.CompareTag("Boost"))
+        {
+            hit.gameObject.GetComponent<Boost>().PickUp();
         }
     }
 }

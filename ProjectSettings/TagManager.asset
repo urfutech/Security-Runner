@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Side Wall
   - Coin
+  - Boost
   layers:
   - Default
   - TransparentFX

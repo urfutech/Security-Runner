@@ -33,7 +33,8 @@ public class GameManager : MonoBehaviour
     [Header("Unity editor")]
     [SerializeField] GameObject _createBoost;
 
-    public TextMeshProUGUI TextCountCoins => _textCountCoins;
+	#region Properties
+	public TextMeshProUGUI TextCountCoins => _textCountCoins;
     public TextMeshProUGUI ScoreTextLoseMenu => _scoreTextLoseMenu;
     public TextMeshProUGUI ScoreTextCurrent => _scoreTextCurrent;
     public TextMeshProUGUI ScoreTextBest => _scoreTextBest;
@@ -48,9 +49,9 @@ public class GameManager : MonoBehaviour
     public WallsSpawner WallsSpawner => _wallsSpawner;
     public CoinsSpawner CoinsSpawner => _coinsSpawner;
     public BoostsSpawner BoostsSpawner => _boostsSpawner;
+	#endregion
 
-
-    void Awake()
+	void Awake()
     {
         if (Instance == null)
         {

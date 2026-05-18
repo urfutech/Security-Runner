@@ -32,12 +32,17 @@ public class Coin : MonoBehaviour
         }
     }
 
-    public void Collect()
-    {
-        if (IsCollected) return;
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == "Player")
+        {
+			if (IsCollected) return;
 
-        GetComponent<Collider>().enabled = false;
-        IsCollected = true;
-        Destroy(gameObject);
-    }
+            other.GetComponent<PlayerCollision>().AddProgressPoint();
+			GetComponent<Collider>().enabled = false;
+
+			IsCollected = true;
+			Destroy(gameObject);
+		}
+	}
 }

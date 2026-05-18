@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5080028747373829797}
   - component: {fileID: 436542910785168747}
   - component: {fileID: 4065753531450587429}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WallPrefab
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 863954083046860931}
   - component: {fileID: 8420565897812693200}
   - component: {fileID: 753249082558034033}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SideBoxLeft
   m_TagString: Side Wall
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 5922902953357236281}
   - component: {fileID: 2234652535428687249}
   - component: {fileID: 7733424584967589996}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DeadBox
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 6551993596138468571}
   - component: {fileID: 3561189970699649802}
   - component: {fileID: 4447972242632144176}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SideBoxRight
   m_TagString: Side Wall
   m_Icon: {fileID: 0}

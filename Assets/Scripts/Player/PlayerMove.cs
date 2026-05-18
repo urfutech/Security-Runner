@@ -3,13 +3,14 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMove : MonoBehaviour
 {
-    const float GravityForce = 67;
+    const float GravityForce = 67; //кто это читает тот гей
+    const float InitialJumpForce = 20;
     const float SpeedForwardChange = 0.1f;
     const float SpeedChangeLine = 25;
     const float StartSpeed = 10;
 
     public int CurrentLineId { get; private set; }
-    public float JumpForce { get; private set; } = 20;
+    public float JumpForce { get; private set; } = InitialJumpForce;
 
     [SerializeField] float _speedForward;
     [SerializeField] float _maxSpeed;
@@ -32,14 +33,27 @@ public class PlayerMove : MonoBehaviour
     {
         Jump();
         MoveCharacter();
-    }
+
+		if (Input.GetKeyDown(KeyCode.W))
+		{
+			print("Up " + debud1);
+			debud1++;
+		}
+	}
 
     void Jump()
-    {
-        if (Input.GetKeyDown(KeyCode.W) && (_charController.isGrounded || CheckGround()))
-            _verticalSpeed = JumpForce;
+	{
+		lock(this)
+        {
+			if (Input.GetKeyDown(KeyCode.W) && IsGrounded)
+			{
+				_verticalSpeed = JumpForce;
+				print("UpPressed");
+			}
+		}
+		
 
-        if (!_charController.isGrounded)
+		if (!_charController.isGrounded)
             _verticalSpeed -= GravityForce * Time.deltaTime;
         else if (_verticalSpeed < 0)
             _verticalSpeed = 0;
@@ -59,9 +73,10 @@ public class PlayerMove : MonoBehaviour
         CheckDirection();
     }
 
+    int debud1 = 0;
     private void CheckDirection()
     {
-        if (Input.GetKeyDown(KeyCode.D) && CurrentLineId > 0)
+		if (Input.GetKeyDown(KeyCode.D) && CurrentLineId > 0)
         {
             CurrentLineId--;
             _isChangeLine = true;
@@ -101,9 +116,13 @@ public class PlayerMove : MonoBehaviour
     public void ChangeSpeed(float speed) =>
         _speedForward = _speedForward + speed < StartSpeed ? StartSpeed : _speedForward + speed; 
 
-    bool CheckGround() => Physics.Raycast(transform.position, Vector3.down, 0.05f);
+    //я в рот ебал
+    bool IsGrounded => 
+        Physics.Raycast(transform.position, Vector3.down, 0.05f, LayerMask.GetMask("Ground", "Obstacle"));
 
-    public float SetJumpForce(float value) => JumpForce = value;
+    public void SetJumpForce(float value) => JumpForce = value;
+
+    public void RecoverJumpForce() => JumpForce = InitialJumpForce;
 
     public float Speed => _speedForward;
 

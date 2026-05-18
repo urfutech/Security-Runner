@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5406506605167139336}
   - component: {fileID: 91962312208747803}
   - component: {fileID: 2501483372613929371}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,6 +172,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 23cfebfca08df0245b8be8197a7910ec, type: 3}
       propertyPath: m_Name
       value: Road straight 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 23cfebfca08df0245b8be8197a7910ec, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1094559010302358929, guid: 23cfebfca08df0245b8be8197a7910ec, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

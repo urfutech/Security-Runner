@@ -8,7 +8,9 @@ public abstract class Boost : MonoBehaviour
     protected PlayerMove playerMove;
     protected Transform playerTransform;
 
-    private void Start()
+	protected static bool isBoostActive = false;
+
+	private void Start()
     {
         playerMove = GameManager.Instance.PlayerMove;
         playerTransform = GameManager.Instance.PlayerTransform;
@@ -27,6 +29,7 @@ public abstract class Boost : MonoBehaviour
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<Collider>().enabled = false;
 
+        isBoostActive = true;
         StartCoroutine(RemoveAfterDuration());
     }
 

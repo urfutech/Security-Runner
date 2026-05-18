@@ -27,14 +27,11 @@ public class PlayerCollision : MonoBehaviour
         {
             GameManager.Instance.GameLose();
         }
-        else if (hit.gameObject.CompareTag("Coin"))
-        {
-            hit.gameObject.GetComponent<Coin>().Collect();
-            _progress.AddCoin();
-        }
         else if (hit.gameObject.CompareTag("Boost"))
         {
             hit.gameObject.GetComponent<Boost>().PickUp();
         }
     }
+
+    public void AddProgressPoint() => _progress.AddCoin();
 }

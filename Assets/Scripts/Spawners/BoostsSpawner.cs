@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class BoostsSpawner : MonoBehaviour
 {
-    [SerializeField] float _minSpawnTime = 90f;
-    [SerializeField] float _maxSpawnTime = 300f;
+    [SerializeField] float _minSpawnTime = 60f;
+    [SerializeField] float _maxSpawnTime = 180f;
 
     [SerializeField] GameObject[] _boosterPrefabs;
 

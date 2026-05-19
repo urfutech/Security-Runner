@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
         if (ScoreTextCurrent != null) ScoreTextCurrent.text = "Score: 0";
         if (ScoreTextBest != null) ScoreTextBest.text = $"Best score: {YG2.saves.BestScore}";
         if (TextCountCoins != null) TextCountCoins.text = YG2.saves.Coins.ToString();
-        if (Review != null && YG2.reviewCanShow) Review.SetActive(false);
+        if (Review != null && !YG2.reviewCanShow) Review.SetActive(false);
 
         #if !UNITY_EDITOR
         _createBoost.SetActive(false);
